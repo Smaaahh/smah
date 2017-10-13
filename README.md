@@ -1,3 +1,7 @@
+#Les remotes
+git remote add m2icars http://m2i-34739:8080/tfs/DefaultCollection/_git/Projet1 
+git remote add http://m2i-34739:8080/tfs/DefaultCollection/_git/Projet1 
+
 # Vous avez ajouté votre premier fichier ReadMe.
 Un fichier README.md est destiné à orienter rapidement les lecteurs vers ce que votre projet peut faire. Vous découvrez Markdown ? [En savoir plus](https://go.microsoft.com/fwlink/p/?LinkId=524306&clcid=0x40c)
 
