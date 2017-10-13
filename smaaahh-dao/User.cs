@@ -12,8 +12,11 @@ namespace smaaahh_dao
        
         [Key]
         public int UserId { get ; set ; }
+        [DataType(DataType.EmailAddress)]
         public string Email { get ; set ; }
+        [DataType(DataType.PhoneNumber)]
         public string Phone { get; set ; }
+        [DataType(DataType.Password), MinLength(5)]
         public string Password { get; set; }
         public string FirstName { get ; set; }
         public string LastName { get ; set ; }

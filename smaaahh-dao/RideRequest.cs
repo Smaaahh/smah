@@ -14,7 +14,7 @@ namespace smaaahh_dao
         public int RideRequestID { get; set; }
 
         [ForeignKey("RiderId")]
-        public Rider Rider { get; set; }
+        public virtual Rider Rider { get; set; }
         public int RiderId { get; set; }
 
         public decimal PosXStart { get; set; }

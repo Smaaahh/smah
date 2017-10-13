@@ -14,11 +14,11 @@ namespace smaaahh_dao
         public int RideId { get; set; }
 
         [ForeignKey("RiderId")]
-        public Rider Rider { get; set; }
+        public virtual Rider Rider { get; set; }
         public int RiderId { get; set; }
 
         [ForeignKey("DriverId")]
-        public Driver Driver { get; set; }
+        public virtual Driver Driver { get; set; }
         public int DriverId { get; set; }
 
         public decimal PosXStart { get; set; }
@@ -36,7 +36,7 @@ namespace smaaahh_dao
         public decimal Price { get; set; }
 
         [ForeignKey("PromotionCodeId")]
-        public PromotionCode PromotionCode { get; set; }
+        public virtual PromotionCode PromotionCode { get; set; }
         public int PromotionCodeId { get; set; }
 
         public double RiderRating { get; set; }
