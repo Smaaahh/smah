@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace smaaahh_dao
 {
-    class Car
+    public class Car
     {
         [Key]
         public int CarId { get ; set ; }
@@ -20,6 +20,9 @@ namespace smaaahh_dao
         public int DriverId { get; set; }
         [ForeignKey("DriverId")]
         public Driver Driver { get; set; }
+
+        public Car()
+        { }
 
     }
 }
