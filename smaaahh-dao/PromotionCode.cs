@@ -16,8 +16,10 @@ namespace smaaahh_dao
         public decimal Reduction { get; set; }
         public DateTime DateStart { get; set; }
         public DateTime DateEnd { get; set; }
+        public string Image { get; set; }
 
         public PromotionCode ()
-        { }
+        {
+        }
     }
 }

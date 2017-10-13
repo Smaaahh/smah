@@ -1,4 +1,5 @@
-﻿using System;
+﻿using smaaahh_dao;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,10 +10,12 @@ namespace smaaahh_api.Controllers
 {
     public class ValuesController : ApiController
     {
+        private Db db = new Db();
         // GET api/values
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+
+            return db.Drivers.ToList() as IEnumerable<string>;
         }
 
         // GET api/values/5

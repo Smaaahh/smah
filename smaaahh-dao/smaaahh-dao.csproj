@@ -49,7 +49,6 @@
   <ItemGroup>
     <Compile Include="Admin.cs" />
     <Compile Include="Car.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Db.cs" />
     <Compile Include="Driver.cs" />
     <Compile Include="PromotionCode.cs" />

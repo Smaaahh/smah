@@ -10,9 +10,11 @@ namespace smaaahh_dao
     {
         public int RoleId { get; set; }
         public string Title { get; set; }
+        public virtual List<Admin> Admins { get; set; }
+
         public Role()
         {
-
+            Admins = new List<Admin>();
         }
     }
 }

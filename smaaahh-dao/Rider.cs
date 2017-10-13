@@ -9,6 +9,12 @@ namespace smaaahh_dao
 {
     public class Rider : User
     {
+        public enum RiderState
+        {
+            Enabled,
+            Disabled
+        }
+
         [Key]
         public int RiderId { get; set; }
         public double Rating { get; set; }
@@ -16,7 +22,9 @@ namespace smaaahh_dao
         public decimal PosX { get; set; }
         public decimal PosY { get; set; }
         public bool Free { get; set; }  
-        public Rider():base()
+        public RiderState State { get; set; }
+
+        public Rider()
         {
 
         }

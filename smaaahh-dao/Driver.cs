@@ -10,18 +10,21 @@ namespace smaaahh_dao
 {
    public class Driver : User
     {
+        public enum DriverState
+        {
+            Enabled,
+            Disabled
+        }
+
         [Key]
         public int DriverId { get; set; }
         public double Rating { get; set; }
         public decimal PosX { get; set; }
         public decimal PosY { get; set; }
 
-        public int CartId { get; set; }
+        public DriverState State { get; set; }
 
-        [ForeignKey("CartId")]
-        public virtual Car Car { get; set; }
-
-        public Driver():base()
+        public Driver()
         {
         }
 

@@ -9,7 +9,7 @@ namespace smaaahh_dao
 {
     public class Db : DbContext
     {
-        public DbSet<User> Users { get; set; }
+        
         public DbSet<Driver> Drivers { get; set; }
         public DbSet<Rider> Riders { get; set; }
         public DbSet<Admin> Admins { get; set; }

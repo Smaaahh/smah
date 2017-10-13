@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace smaaahh_dao
 {
-   public class User
+   public abstract class User
     {
-       
-        [Key]
-        public int UserId { get ; set ; }
         [DataType(DataType.EmailAddress)]
         public string Email { get ; set ; }
         [DataType(DataType.PhoneNumber)]

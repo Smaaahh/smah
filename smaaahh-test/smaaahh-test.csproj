@@ -54,6 +54,16 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\smaaahh-web\smaaahh-web.csproj">
+      <Project>{0ec6b0a1-9768-43a9-b226-9e07270544d1}</Project>
+      <Name>smaaahh-web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\smaaahh-wpf\smaaahh-wpf.csproj">
+      <Project>{fffcdecb-e107-4056-a604-72681b899362}</Project>
+      <Name>smaaahh-wpf</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
