@@ -1,0 +1,11 @@
+﻿DROP TABLE dbo.Ratings;
+DROP TABLE dbo.RideRequests;
+DROP TABLE dbo.Rides;
+DROP TABLE dbo.Cars;
+DROP TABLE dbo.PromotionCodes; 
+DROP TABLE dbo.RoleAdmins;
+DROP TABLE dbo.Roles; 
+DROP TABLE dbo.Drivers;
+DROP TABLE dbo.Riders;
+DROP TABLE dbo.Admins;
+DROP TABLE dbo.__MigrationHistory;
