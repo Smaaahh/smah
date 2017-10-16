@@ -1,6 +1,6 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    margin:0;
+    padding: 0;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -9,6 +9,9 @@
     padding-right: 15px;
 }
 
+.imglogo{
+    height:70px;
+}
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -22,4 +25,27 @@ select,
 textarea {
     max-width: 280px;
 
+}
+
+.nav-link 
+{
+    font-size:25px;
+    color:#ffffff;
+}
+
+.navbar {
+    background: rgb(86, 19, 138 );
+}
+
+
+footer {
+    background: rgba(9, 1, 1, 0.65);
+    height:200px;
+
+}
+
+.btn-success {
+    height: 60px;
+    width: 150px;
+    margin-left: 20px;
 }
