@@ -21,6 +21,8 @@ namespace smaaahh_dao
         public double Rating { get; set; }
         public decimal PosX { get; set; }
         public decimal PosY { get; set; }
+        public bool Active { get; set; }
+        public bool Free { get; set; }
 
         public DriverState State { get; set; }
 
