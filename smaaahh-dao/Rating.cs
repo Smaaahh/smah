@@ -17,6 +17,10 @@ namespace smaaahh_dao
         public DateTime DateCreation { get; set; }
         public bool Enabled { get; set; }
 
+        public int RideId { get; set; }
+        [ForeignKey("RideId")]
+        public virtual Ride Ride { get; set; }
+
         public int? RiderId { get; set; }
         public int? DriverId { get; set; }
         

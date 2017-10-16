@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="01db0e51449e45baa68f4407d87f0bc1" Name="Diagram1">
+        <EntityTypeShape EntityType="masterModel.C__MigrationHistory" Width="1.5" PointX="8.125" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.Admins" Width="1.5" PointX="5.5" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.Cars" Width="1.5" PointX="7.125" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.Drivers" Width="1.5" PointX="3.375" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.PromotionCodes" Width="1.5" PointX="0.5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.Ratings" Width="1.5" PointX="6.875" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.RideRequests" Width="1.5" PointX="4.5" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.Riders" Width="1.5" PointX="0.875" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.Rides" Width="1.5" PointX="2.125" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.Roles" Width="1.5" PointX="8" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.MSreplication_options" Width="1.5" PointX="4" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.spt_fallback_db" Width="1.5" PointX="0.875" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.spt_fallback_dev" Width="1.5" PointX="5.875" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.spt_fallback_usg" Width="1.5" PointX="10.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.spt_monitor" Width="1.5" PointX="10.75" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="masterModel.FK_dbo_Cars_dbo_Drivers_DriverId" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK_dbo_Ratings_dbo_Drivers_DriverId" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK_dbo_Rides_dbo_Drivers_DriverId" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK_dbo_Rides_dbo_PromotionCodes_PromotionCodeId" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK_dbo_Ratings_dbo_Riders_RiderId" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK_dbo_RideRequests_dbo_Riders_RiderId" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK_dbo_Rides_dbo_Riders_RiderId" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.RoleAdmins" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
