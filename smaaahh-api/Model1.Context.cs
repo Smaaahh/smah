@@ -20,25 +20,6 @@ namespace smaaahh_api
         {
         }
     
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            throw new UnintentionalCodeFirstException();
-        }
-    
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
-        public virtual DbSet<Admins> Admins { get; set; }
-        public virtual DbSet<Cars> Cars { get; set; }
-        public virtual DbSet<Drivers> Drivers { get; set; }
-        public virtual DbSet<PromotionCodes> PromotionCodes { get; set; }
-        public virtual DbSet<Ratings> Ratings { get; set; }
-        public virtual DbSet<RideRequests> RideRequests { get; set; }
-        public virtual DbSet<Riders> Riders { get; set; }
-        public virtual DbSet<Rides> Rides { get; set; }
-        public virtual DbSet<Roles> Roles { get; set; }
-        public virtual DbSet<MSreplication_options> MSreplication_options { get; set; }
-        public virtual DbSet<spt_fallback_db> spt_fallback_db { get; set; }
-        public virtual DbSet<spt_fallback_dev> spt_fallback_dev { get; set; }
-        public virtual DbSet<spt_fallback_usg> spt_fallback_usg { get; set; }
-        public virtual DbSet<spt_monitor> spt_monitor { get; set; }
+        
     }
 }
