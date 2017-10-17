@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 //using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Net.Http;
+using smaaahh_wpf.Classes;
 
 
 namespace smaaahh_wpf
@@ -38,13 +39,7 @@ namespace smaaahh_wpf
             string email = tEmail.Text;
             string password = tPassword.Text;
             MessageBox.Show($"Email : {email} Password : {password}");
-            string token = null;
-            Task.Run(async () =>
-            {
-                token = await GetToken(email, password);
-            }).Wait();
-            //Session["token"] = token;
-            MessageBox.Show( $"token : {token}");
+            string token = Classes.Admin.verifLogin(email, password, "admin");
             if (token == "Wrong access")
             {
                 // email / password invalide
@@ -63,23 +58,9 @@ namespace smaaahh_wpf
                 mainWindow.Show();
                 this.Close();
             }
+
         }
 
-       
-
-        public async Task<string> GetToken(string email, string password)
-        {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("http://localhost:51453/");
-            client.DefaultRequestHeaders.Accept.Clear();
-            string s = null;
-            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = await client.GetAsync($"api/Account/Authenticate?email={email}&password={password}&type=admin");
-            if (response.IsSuccessStatusCode)
-            {
-                s = await response.Content.ReadAsAsync<string>();
-            }
-            return s;
-        }
+        
     }
 }
