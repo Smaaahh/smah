@@ -47,14 +47,14 @@ namespace smaaahh_web.Controllers
         // POST: Driver/Create
         // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
         // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
-        [System.Web.Http.HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RiderId, Rating,PosX,PosY")] Rider rider )
-        {
+        //[System.Web.Http.HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "RiderId, Rating,PosX,PosY")] Rider rider )
+        //{
 
 
-            return View(rider);
-        }
+        //    return View(rider);
+        //}
 
         // GET: Rider/Edit/id
         public ActionResult Edit(int? id)

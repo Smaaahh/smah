@@ -242,6 +242,8 @@
     <Content Include="Views\Home\Maps.cshtml">
       <BrowseToURL>~/Home/Maps</BrowseToURL>
     </Content>
+    <Content Include="Views\Drivers\Create.cshtml" />
+    <Content Include="Views\Riders\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
