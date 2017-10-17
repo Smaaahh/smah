@@ -9,6 +9,8 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using smaaahh_dao;
+using System.Drawing;
+using GeoCoordinatePortable;
 
 namespace smaaahh_api.Controllers
 {
@@ -21,7 +23,12 @@ namespace smaaahh_api.Controllers
         {
             return db.Drivers;
         }
-
+        
+        [Route("api/Drivers/Free")]
+        public IQueryable<Driver> GetDriversFree()
+        {
+            return db.Drivers.Where(f =>f.Free == true && f.Active == true);
+        }
         // GET: api/Drivers/5
         [ResponseType(typeof(Driver))]
         public IHttpActionResult GetDriver(int id)
@@ -114,5 +121,6 @@ namespace smaaahh_api.Controllers
         {
             return db.Drivers.Count(e => e.DriverId == id) > 0;
         }
+        
     }
 }
