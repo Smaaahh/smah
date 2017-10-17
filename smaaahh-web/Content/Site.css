@@ -39,13 +39,22 @@ textarea {
 
 
 footer {
-    background: rgba(9, 1, 1, 0.65);
-    height:200px;
-
+    background: rgb(86, 19, 138 );
+    height: 200px;
 }
 
 .btn-success {
     height: 60px;
     width: 150px;
     margin-left: 20px;
+}
+
+
+.carousel-inner {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.d-block w-100, img{
+    height:350px;
 }
