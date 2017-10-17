@@ -30,7 +30,7 @@ namespace smaaahh_web.Controllers
             string retour = null;
             Task.Run(async () =>
             {
-                retour = await GetInfo();
+                retour = await GetInfo(id);
             }).Wait();
 
             return $"retour : {retour}";
@@ -51,9 +51,9 @@ namespace smaaahh_web.Controllers
             return await CallApi<string>($"api/Account/Authenticate?mail={Email}&password={Password}&type={Type}", false);
         }
 
-        public async Task<string> GetInfo()
+        public async Task<string> GetInfo(int? id)
         {
-            return await CallApi<string>($"api/Account/Get?id=1", true);
+            return await CallApi<string>($"api/Account/Get?id=" + id, true);
         }
     }
 }

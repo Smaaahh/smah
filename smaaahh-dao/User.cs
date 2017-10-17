@@ -19,6 +19,7 @@ namespace smaaahh_dao
         public string FirstName { get ; set; }
         public string LastName { get ; set ; }
         public string ImgProfil { get; set; }
+        public string Username { get; set; }
 
         public User()
         {
