@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:smaaahh_wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1000" Width="800">
+        Title="MainWindow" Height="800" Width="1200">
     <Grid>
-        <TabControl HorizontalAlignment="Left" Height="949" Margin="10,10,0,0" VerticalAlignment="Top" Width="772">
+        <TabControl HorizontalAlignment="Left" Height="749" Margin="10,10,0,0" VerticalAlignment="Top" Width="1172">
             <TabItem Header="Statistiques">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5" Margin="0,0,28,5"/>
             </TabItem>
             <TabItem Header="Liste des Chauffeurs">
                 <Grid Background="#FFE5E5E5"/>

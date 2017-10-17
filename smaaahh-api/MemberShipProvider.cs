@@ -1,4 +1,5 @@
-﻿using System;
+﻿using smaaahh_dao;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -9,6 +10,7 @@ namespace smaaahh_api
 {
     public class MemberShipProvider
     {
+        private Db db = new Db();
         public List<Claim> GetUserClaims(string username)
         {
             List<Claim> claims = new List<Claim>();
@@ -17,11 +19,21 @@ namespace smaaahh_api
             return claims;
         }
 
-        public bool VerifyUserPassword(string username, string password)
+        public bool VerifyAdminPassword(string email, string password)
         {
-            if (username == "admin" && password == "password")
-                return true;
-            return false;
+            //if (email == "admin" && password == "password")
+            //   return true;
+            //return false;
+            Admin admin;
+            try
+            {
+                admin = db.Admins.First(a => (a.Email == email && a.Password == password));
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
         }
 
         public MemberShipProvider()

@@ -25,12 +25,12 @@ namespace smaaahh_api
 
         }
 
-        public async Task<string> GenerateJwtTokenAsync(string username, string password)
+        public async Task<string> GenerateJwtTokenAsync(string email, string password)
         {
-            if (!_membershipProvider.VerifyUserPassword(username, password))
+            if (!_membershipProvider.VerifyAdminPassword(email, password))
                 return "Wrong access";
 
-            List<Claim> claims = _membershipProvider.GetUserClaims(username);
+            List<Claim> claims = _membershipProvider.GetUserClaims(email);
 
             string publicAndPrivateKey = await _rsaProvider.GetPrivateAndPublicKeyAsync();
             if (publicAndPrivateKey == null)

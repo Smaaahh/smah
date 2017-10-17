@@ -9,27 +9,59 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using smaaahh_dao;
+using System.Threading.Tasks;
 
 namespace smaaahh_api.Controllers
 {
     public class AdminsController : ApiController
     {
+        private AuthService _authService;
         private Db db = new Db();
 
         // vérifie si un admin existe ou pas
         // A MODIFIER !!!!!
-        public Admin verifLogin(string email, string password)
+        //public Admin verifLogin(string email, string password)
+        //{
+        //    Admin admin;
+        //    try
+        //    {
+        //        admin = db.Admins.First(a => (a.Email == email && a.Password == password));
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        admin = null;
+        //    }
+        //    return admin;
+        //}
+
+        public AdminsController()
         {
-            Admin admin;
-            try
-            {
-                admin = db.Admins.First(a => (a.Email == email && a.Password == password));
-            }
-            catch (Exception e)
-            {
-                admin = null;
-            }
-            return admin;
+
+        }
+
+        public AdminsController(AuthService authService)
+        {
+            _authService = authService;
+        }
+
+        // GET: Membership
+
+        [HttpGet]
+        [Route("api/Account/Authenticate")]
+        public async Task<string> Authenticate(String email, String password)
+        {
+            MemberShipProvider m = new MemberShipProvider();
+            RSAKeyProvider r = new RSAKeyProvider();
+            _authService = new AuthService(m, r);
+            string Token = await _authService.GenerateJwtTokenAsync(email, password);
+            return Token;
+        }
+
+        [Route("api/Account/Get")]
+        [TokenAuthenticate]
+        public string Get(int id)
+        {
+            return "Vous etes connecté";
         }
 
         // GET: api/Admins
