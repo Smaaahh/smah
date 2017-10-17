@@ -11,14 +11,14 @@ using System.Web.Mvc;
 
 namespace smaaahh_web.Controllers
 {
-    public class UsersController : Controller
+    public class UsersController : DefaultController
     {
         public string Index(int? id)
         {
             string token = null;
             Task.Run(async () =>
             {
-                token = await GetToken("Email", "Password");
+                token = await GetToken("Email", "Password", "driver");
             }).Wait();
             Session["token"] = token;
             return $"token : {token}";
@@ -30,7 +30,7 @@ namespace smaaahh_web.Controllers
             string retour = null;
             Task.Run(async () =>
             {
-                retour = await GetInfo();
+                retour = await GetInfo(id);
             }).Wait();
 
             return $"retour : {retour}";
@@ -39,62 +39,21 @@ namespace smaaahh_web.Controllers
 
         public async Task<Driver> GetDriver(string Email)
         {
-            HttpClient user = new HttpClient();
-            user.BaseAddress = new Uri("http://localhost:5050/");
-            user.DefaultRequestHeaders.Accept.Clear();
-            Driver e = null;
-            user.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = await user.GetAsync($"api/Drivers/{Email}");
-            if (response.IsSuccessStatusCode)
-            {
-                e = await response.Content.ReadAsAsync<Driver>();
-            }
-            return e;
+            return await CallApi<Driver>($"api/Drivers/{Email}", false);
         }
 
         public async Task<Rider> GetRider(string Email)
         {
-            HttpClient user = new HttpClient();
-            user.BaseAddress = new Uri("http://localhost:5050/");
-            user.DefaultRequestHeaders.Accept.Clear();
-            Rider e = null;
-            user.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = await user.GetAsync($"api/Drivers/{Email}");
-            if (response.IsSuccessStatusCode)
-            {
-                e = await response.Content.ReadAsAsync<Rider>();
-            }
-            return e;
+            return await CallApi<Rider>($"api/Riders/{Email}",false);
         }
-        public async Task<string> GetToken(string Email, string Password)
+        public async Task<string> GetToken(string Email, string Password, string Type)
         {
-            HttpClient user = new HttpClient();
-            user.BaseAddress = new Uri("http://localhost:5050/");
-            user.DefaultRequestHeaders.Accept.Clear();
-            string s = null;
-            user.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = await user.GetAsync($"api/Account/Authenticate?mail={Email}&password={Password}");
-            if (response.IsSuccessStatusCode)
-            {
-                s = await response.Content.ReadAsAsync<string>();
-            }
-            return s;
+            return await CallApi<string>($"api/Account/Authenticate?mail={Email}&password={Password}&type={Type}", false);
         }
 
-        public async Task<string> GetInfo()
+        public async Task<string> GetInfo(int? id)
         {
-            HttpClient user = new HttpClient();
-            user.BaseAddress = new Uri("http://localhost:5050/");
-            user.DefaultRequestHeaders.Accept.Clear();
-            string s = null;
-            user.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            user.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session["token"].ToString());
-            HttpResponseMessage response = await user.GetAsync($"api/Account/Get?id=1");
-            if (response.IsSuccessStatusCode)
-            {
-                s = await response.Content.ReadAsAsync<string>();
-            }
-            return s;
+            return await CallApi<string>($"api/Account/Get?id=" + id, true);
         }
     }
 }

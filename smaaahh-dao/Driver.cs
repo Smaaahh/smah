@@ -19,8 +19,8 @@ namespace smaaahh_dao
         [Key]
         public int DriverId { get; set; }
         public double Rating { get; set; }
-        public decimal PosX { get; set; }
-        public decimal PosY { get; set; }
+        public double PosX { get; set; }
+        public double PosY { get; set; }
         public bool Active { get; set; }
         public bool Free { get; set; }
 
