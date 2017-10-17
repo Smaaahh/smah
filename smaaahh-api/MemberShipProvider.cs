@@ -19,15 +19,25 @@ namespace smaaahh_api
             return claims;
         }
 
-        public bool VerifyAdminPassword(string email, string password)
+        public bool VerifyPassword(string email, string password, string type)
         {
             //if (email == "admin" && password == "password")
             //   return true;
             //return false;
-            Admin admin;
             try
             {
-                admin = db.Admins.First(a => (a.Email == email && a.Password == password));
+                switch (type)
+                {
+                    case "admin":
+                        db.Admins.First(a => (a.Email == email && a.Password == password));
+                        break;
+                    case "driver":
+                        db.Drivers.First(a => (a.Email == email && a.Password == password));
+                        break;
+                    case "rider":
+                        db.Riders.First(a => (a.Email == email && a.Password == password));
+                        break;
+                }
             }
             catch (Exception e)
             {

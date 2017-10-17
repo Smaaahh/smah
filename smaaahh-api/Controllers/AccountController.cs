@@ -13,33 +13,18 @@ using System.Threading.Tasks;
 
 namespace smaaahh_api.Controllers
 {
-    public class AdminsController : ApiController
+    public class AccountController : ApiController
     {
         private AuthService _authService;
         private Db db = new Db();
 
-        // vérifie si un admin existe ou pas
-        // A MODIFIER !!!!!
-        //public Admin verifLogin(string email, string password)
-        //{
-        //    Admin admin;
-        //    try
-        //    {
-        //        admin = db.Admins.First(a => (a.Email == email && a.Password == password));
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        admin = null;
-        //    }
-        //    return admin;
-        //}
-
-        public AdminsController()
+        
+        public AccountController()
         {
 
         }
 
-        public AdminsController(AuthService authService)
+        public AccountController(AuthService authService)
         {
             _authService = authService;
         }
@@ -48,12 +33,12 @@ namespace smaaahh_api.Controllers
 
         [HttpGet]
         [Route("api/Account/Authenticate")]
-        public async Task<string> Authenticate(String email, String password)
+        public async Task<string> Authenticate(String email, String password, String type)
         {
             MemberShipProvider m = new MemberShipProvider();
             RSAKeyProvider r = new RSAKeyProvider();
             _authService = new AuthService(m, r);
-            string Token = await _authService.GenerateJwtTokenAsync(email, password);
+            string Token = await _authService.GenerateJwtTokenAsync(email, password, type);
             return Token;
         }
 

@@ -25,9 +25,9 @@ namespace smaaahh_api
 
         }
 
-        public async Task<string> GenerateJwtTokenAsync(string email, string password)
+        public async Task<string> GenerateJwtTokenAsync(string email, string password, string type)
         {
-            if (!_membershipProvider.VerifyAdminPassword(email, password))
+            if (!_membershipProvider.VerifyPassword(email, password, type))
                 return "Wrong access";
 
             List<Claim> claims = _membershipProvider.GetUserClaims(email);

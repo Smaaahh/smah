@@ -53,7 +53,7 @@ namespace smaaahh_wpf
             else if (token == "RSA key error")
             {
                 // email / password invalide
-                lMessage.Content = "Probleme de criptage.";
+                lMessage.Content = "Probleme de cryptage.";
             }
             else
             {
@@ -74,7 +74,7 @@ namespace smaaahh_wpf
             client.DefaultRequestHeaders.Accept.Clear();
             string s = null;
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = await client.GetAsync($"api/Account/Authenticate?email={email}&password={password}");
+            HttpResponseMessage response = await client.GetAsync($"api/Account/Authenticate?email={email}&password={password}&type=admin");
             if (response.IsSuccessStatusCode)
             {
                 s = await response.Content.ReadAsAsync<string>();
