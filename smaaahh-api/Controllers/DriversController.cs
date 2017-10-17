@@ -10,7 +10,6 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using smaaahh_dao;
 using System.Drawing;
-using GeoCoordinatePortable;
 
 namespace smaaahh_api.Controllers
 {
