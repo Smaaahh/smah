@@ -58,3 +58,6 @@ footer {
 .d-block w-100, img{
     height:350px;
 }
+#map {
+    height: 300px;
+}
