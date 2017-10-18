@@ -13,7 +13,7 @@ namespace smaaahh_wpf
     {
         protected static string ApiUrl = "http://localhost:51453/";
 
-        public async static Task<T> CallApi<T>(string url, bool needAuth)
+        public async static Task<T> CallApi<T>(string url)
         {
             HttpClient user = new HttpClient();
             user.BaseAddress = new Uri(ApiUrl);
