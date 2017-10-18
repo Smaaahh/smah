@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using smaaahh_dao;
 using System.Drawing;
+using System.Web.Http.Cors;
 
 namespace smaaahh_api.Controllers
 {
@@ -24,9 +25,10 @@ namespace smaaahh_api.Controllers
         }
         
         [Route("api/Drivers/Free")]
+        [EnableCors(origins: "http://localhost:51437", headers: "*", methods: "*")]
         public IQueryable<Driver> GetDriversFree()
         {
-            return db.Drivers.Where(f =>f.Free == true && f.Active == true);
+            return db.Drivers.Where(f =>f.Free == true && f.Active == true && f.State == Driver.DriverState.Enabled);
         }
         // GET: api/Drivers/5
         [ResponseType(typeof(Driver))]
