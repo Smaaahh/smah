@@ -22,7 +22,6 @@ namespace smaaahh_wpf.Classes
                 listDrivers = await GetDriversAPI();
             }).Wait();
 
-            //listDrivers = JsonConvert.DeserializeObject<List<Driver>>(result.ToString());
             return listDrivers;
         }
 
@@ -32,7 +31,27 @@ namespace smaaahh_wpf.Classes
 
         }
 
-        public static void SaveDriver(Object o)
-        { }
+        public static void updateUser(Object o, string type)
+        {
+            string result;
+            Task.Run(async () =>
+            {
+                result = await updateUserAPI(o, type);
+            }).Wait();
+        }
+
+        public async static Task<string> updateUserAPI(Object o, string type)
+        {
+            switch(type)
+            {
+                case "driver":
+                    return await CallApi<string>($"api/Driver/");
+                    break;
+                case "rider":
+                    return await CallApi<string>($"api/Rider/");
+                    break;
+            }
+            return null;
+        }
     }
 }

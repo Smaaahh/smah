@@ -8,4 +8,5 @@ DROP TABLE dbo.Roles;
 DROP TABLE dbo.Drivers;
 DROP TABLE dbo.Riders;
 DROP TABLE dbo.Admins;
+DROP TABLE dbo.Params;
 DROP TABLE dbo.__MigrationHistory;

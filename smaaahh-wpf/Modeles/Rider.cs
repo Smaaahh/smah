@@ -8,12 +8,6 @@ namespace smaaahh_wpf.Modeles
 {
     public class Rider : User
     {
-        public enum RiderState
-        {
-            Enabled,
-            Disabled
-        }
-
         public int RiderId { get; set; }
         public double Rating { get; set; }
 
@@ -26,7 +20,11 @@ namespace smaaahh_wpf.Modeles
         {
 
         }
+    }
 
-
+    public enum RiderState
+    {
+        Enabled,
+        Disabled
     }
 }

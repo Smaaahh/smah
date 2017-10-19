@@ -29,37 +29,47 @@ namespace smaaahh_wpf.ViewModels
             }
         }
 
-        public string LastName
+        public string DriverLastName
         {
             get => driver.LastName;
             set
             {
                 driver.LastName = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("LastName"));
+                PropertyChanged(this, new PropertyChangedEventArgs("DriverLastName"));
             }
         }
 
-        public string FirstName
+        public string DriverFirstName
         {
             get => driver.FirstName;
             set
             {
                 driver.FirstName = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("FirstName"));
+                PropertyChanged(this, new PropertyChangedEventArgs("DriverFirstName"));
             }
         }
 
-        public string UserName
+        public string DriverUserName
         {
             get => driver.UserName;
             set
             {
                 driver.UserName = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("UserName"));
+                PropertyChanged(this, new PropertyChangedEventArgs("DriverUserName"));
             }
         }
-    
-        public DriverState State
+
+        public string DriverPhone
+        {
+            get => driver.Phone;
+            set
+            {
+                driver.Phone = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("DriverPhone"));
+            }
+        }
+
+        public DriverState DriverState
         {
             get => driver.State;
             set

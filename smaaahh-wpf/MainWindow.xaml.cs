@@ -42,8 +42,14 @@ namespace smaaahh_wpf
 
         private void saveDriver(object sender, DataGridRowEditEndingEventArgs e)
         {
-
-            DriverFunctions.SaveDriver(sender.ToString());
+            DriverFunctions.updateUser(e.Row.Item, "driver");
         }
+
+        private void saveRider(object sender, DataGridRowEditEndingEventArgs e)
+        {
+            DriverFunctions.updateUser(e.Row.Item, "rider");
+        }
+
+
     }
 }
