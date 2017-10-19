@@ -3,32 +3,63 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:smaaahh_wpf"
+        xmlns:core="clr-namespace:System;assembly=mscorlib"
+         xmlns:LocalModeles="clr-namespace:smaaahh_wpf.Modeles"
+        xmlns:Local="clr-namespace:smaaahh_wpf.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1200">
+    <Window.DataContext>
+        <Local:generalViewModel></Local:generalViewModel>
+    </Window.DataContext>
+    <Window.Resources>
+        <!--Create list of enumeration values-->
+        <ObjectDataProvider x:Key="myDriverEnum" MethodName="GetValues" ObjectType="{x:Type core:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type Type="LocalModeles:DriverState"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="myRiderEnum" MethodName="GetValues" ObjectType="{x:Type core:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type Type="LocalModeles:RiderState"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
     <Grid>
         <TabControl HorizontalAlignment="Left" Height="749" Margin="10,10,0,0" VerticalAlignment="Top" Width="1172">
             <TabItem Header="Statistiques">
                 <Grid Background="#FFE5E5E5" Margin="0,0,28,5"/>
             </TabItem>
             <TabItem Header="Liste des Chauffeurs">
-                <Grid Background="#FFE5E5E5">
-                    <DataGrid HorizontalAlignment="Left" Height="683" Margin="10,28,0,0" VerticalAlignment="Top" Width="1138">
-                        <DataGrid x:Name="listDrivers" AutoGenerateColumns="False"  RowEditEnding="saveData" Margin="0,0,0,588" >
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Nom" Binding="{Binding nom}" />
-                                <DataGridTextColumn Header="Prénom" Binding="{Binding prenom}" />
-                                <DataGridTextColumn Header="Pseudo" Binding="{Binding pseudo}"/>
-                                <DataGridTextColumn Header="Email" Binding="{Binding email}"/>
-                                <DataGridTextColumn Header="Etat" Binding="{Binding etat}"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </DataGrid>
+                <Grid Background="#FFE5E5E5" >
 
+                    <DataGrid x:Name="listDrivers" AutoGenerateColumns="false" ItemsSource="{Binding}" Margin="0,0,0,43" CanUserDeleteRows="False" CanUserAddRows="False" IsManipulationEnabled="True" RowEditEnding="saveDriver" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Nom" Binding="{Binding LastName}" SortDirection="Ascending" />
+                                <DataGridTextColumn Header="Prénom" Binding="{Binding FirstName}" SortDirection="Ascending" />
+                                <DataGridTextColumn Header="Pseudo" Binding="{Binding UserName}" SortDirection="Ascending"/>
+                                <DataGridTextColumn Header="Email" Binding="{Binding Email}" SortDirection="Ascending"/>
+                            <DataGridTextColumn Header="Téléphone" Binding="{Binding Phone}" SortDirection="Ascending"/>
+                            <DataGridComboBoxColumn Header="Etat"  SelectedItemBinding="{Binding State}" ItemsSource="{Binding Source={StaticResource myDriverEnum}}" SortDirection="Ascending" />
+                        </DataGrid.Columns>
+                        </DataGrid>
+                         
                 </Grid>
             </TabItem>
             <TabItem Header="Liste des Clients">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5" >
+
+                    <DataGrid x:Name="listRiders" AutoGenerateColumns="false" ItemsSource="{Binding}" Margin="0,0,0,43" CanUserDeleteRows="False" CanUserAddRows="False" IsManipulationEnabled="True" RowEditEnding="saveRider" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Nom" Binding="{Binding DriverLastName}" SortDirection="Ascending" />
+                            <DataGridTextColumn Header="Prénom" Binding="{Binding DriverFirstName}" SortDirection="Ascending" />
+                            <DataGridTextColumn Header="Pseudo" Binding="{Binding DriverUserName}" SortDirection="Ascending"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding DriverEmail}" SortDirection="Ascending"/>
+                            <DataGridTextColumn Header="Téléphone" Binding="{Binding DriverPhone}" SortDirection="Ascending"/>
+                            <DataGridComboBoxColumn Header="Etat"  SelectedItemBinding="{Binding DriverState}" ItemsSource="{Binding Source={StaticResource myRiderEnum}}" SortDirection="Ascending" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
             </TabItem>
             <TabItem Header="Modération des avis">
                 <Grid Background="#FFE5E5E5"/>

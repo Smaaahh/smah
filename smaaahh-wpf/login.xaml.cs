@@ -1,5 +1,4 @@
-﻿using smaaahh_dao;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,7 +38,7 @@ namespace smaaahh_wpf
             string email = tEmail.Text;
             string password = tPassword.Text;
             MessageBox.Show($"Email : {email} Password : {password}");
-            string token = Classes.Admin.verifLogin(email, password, "admin");
+            string token = AdminFunctions.verifLogin(email, password, "admin");
             if (token == "Wrong access")
             {
                 // email / password invalide
