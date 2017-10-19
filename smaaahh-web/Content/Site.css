@@ -56,8 +56,43 @@ footer {
 }
 
 .d-block w-100, img{
-    height:350px;
+    height:50px;
 }
 #map {
     height: 300px;
+}
+
+.wrapform {
+    height: 500px;
+    width: 420px;
+    margin: auto;
+    padding: 5px;
+    /*background: #ff00dc;*/
+}
+
+
+table {
+    height: 200px;
+    width: 490px;
+    /*background: #ffd800;*/
+}
+
+    table tr {
+        height: 60px;
+        width: 100px;
+        /*background: #fff;*/
+    }
+
+
+.alerts {
+    height: auto;
+    width: auto;
+    /*background: #0094ff;*/
+    clear: both;
+}
+
+.sub {
+    height: auto;
+    width: auto;
+    /*background: #aaa;*/
 }
