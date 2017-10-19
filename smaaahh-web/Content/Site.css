@@ -1,98 +1,337 @@
-﻿body {
-    margin:0;
+﻿* {
+    margin: 0;
     padding: 0;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+body {
+    margin: 0;
+    padding: 0;
 }
 
-.imglogo{
-    height:70px;
-}
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+/***********structure**********************/
+#WrapAll {
+    /*background: #00ff90;*/
+    height: auto;
+    width: 100%;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-
-}
-
-.nav-link 
-{
-    font-size:25px;
-    color:#ffffff;
-}
-
-.navbar {
+#WrapHeadNav {
     background: rgb(86, 19, 138 );
+    height: 100px;
+    width: 100%;
 }
 
+#Head {
+    /*background: #ff006e;*/
+    height: 100px;
+    width: 990px;
+    margin: auto;
+}
 
-footer {
+#Logo {
+    /*background: #0094ff;*/
+    height: 100px;
+    width: 200px;
+    float: left;
+}
+
+    #Logo img {
+        height: 90px;
+    }
+
+#Nav {
+    /*background: #0026ff;*/
+    height: 100px;
+    width: 700px;
+    float: right;
+}
+
+    #Nav ul {
+        margin: 0;
+        padding: 0;
+        float: right;
+    }
+
+    #Nav li {
+        /*background: #4800ff;*/
+        display: inline-block;
+        margin-top: 20px;
+    }
+
+        #Nav li a {
+            display: block;
+            height: 40px;
+            width: 140px;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 20px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+            #Nav li a:hover {
+                color: #000;
+            }
+
+#Content {
+    /*background: #4800ff;*/
+    height: auto;
+    width: 990px;
+    margin: auto;
+}
+
+#WrapFooter {
     background: rgb(86, 19, 138 );
+    height: 201px;
+    width: 100%;
+}
+
+#Footer {
+    /*background: #ff00dc;*/
     height: 200px;
+    width: 990px;
+    margin: auto;
+}
+/***********structure**end********************/
+/*home*/
+#Slide {
+    background: #ff6a00;
+    height: 390px;
+    width: 990px;
+    /*border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;*/
 }
 
-.btn-success {
-    height: 60px;
-    width: 150px;
-    margin-left: 20px;
+.d-block w-100, img {
+    height: 390px;
+    /*border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;*/
 }
 
-
-.carousel-inner {
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+#WrapMap {
+    background: rgba(224, 224, 224, 0.86);
+    height: 450px;
+    width: 990px;
+    padding: 20px;
 }
 
-.d-block w-100, img{
-    height:50px;
+#SearchBox {
+    background: #fff;
+    height: 150px;
+    width: 190px;
+    float: left;
+    border-style: solid;
+    border-color: #000;
+    border-width: 1px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px #808080;
+    padding: 5px;
+}
+
+.txtBox[type=text]:focus, .txtBox:focus {
+    box-shadow: 0 0 5px #51cbee;
+    padding: 3px 0px 3px 3px;
+    margin: 5px 1px 3px 0px;
+    border: 1px solid #51cbee;
+}
+
+.txt {
+    height: 30px;
+    width: 177px;
+    font-size: 20px;
+    border-style: none;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: #000;
 }
 #map {
     height: 300px;
 }
 
-.wrapform {
-    height: 500px;
-    width: 420px;
-    margin: auto;
-    padding: 5px;
-    /*background: #ff00dc;*/
+#Map {
+    /*background: #874c1a;*/
+    height: 400px;
+    width: 750px;
+    float: right;
 }
+
+#ContentText {
+    /*background: #b6ff00;*/
+    height: 400px;
+    width: 990px;
+}
+
+    #ContentText h3 {
+        text-align: center;
+    }
+
+.ContBox {
+    /*background: #4cff00;*/
+    height: 250px;
+    width: 250px;
+    float: left;
+    margin-right: 40px;
+    margin-left: 40px;
+    border-style: solid;
+    border-color: #000;
+    border-width: 1px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px #808080;
+}
+/*home end*/
+/************************create pages*/
+
 
 
 table {
+    background: #ffd800;
     height: 200px;
     width: 490px;
-    /*background: #ffd800;*/
 }
 
     table tr {
+        background: #fff;
         height: 60px;
         width: 100px;
-        /*background: #fff;*/
     }
 
 
 .alerts {
+    /*background: #0094ff;*/
     height: auto;
     width: auto;
-    /*background: #0094ff;*/
     clear: both;
 }
 
 .sub {
+    /*background: #aaa;*/
     height: auto;
     width: auto;
+}
+
+/********dashboard***/
+#WrapDash {
     /*background: #aaa;*/
+    height: 570px;
+    width: 990px;
+}
+
+.DashBox {
+    /*background: rgb(86, 19, 138 );*/
+    height: 250px;
+    width: 250px;
+    float: left;
+    margin: 10px 39px 10px 39px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: rgb(86, 19, 138 );
+    border-width: 1px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px #808080;
+}
+
+    .DashBox:hover {
+        box-shadow: none;
+    }
+
+/*******Rating********/
+#WrapRating {
+    /*background: #ff9900;*/
+    height: 1305px;
+    width: 990px;
+    padding: 10px;
+}
+
+#MainRating {
+    /*background: #000;*/
+    height: 480px;
+    width: 970px;
+    border-radius: 10px;
+    /*border-style: solid;*/
+    /*border-color: rgb(86, 19, 138 );*/
+    /*border-width: 1px;*/
+    border-radius: 10px;
+    /*box-shadow: 2px 2px 2px 2px #808080;*/
+    padding: 5px;
+}
+
+#MainStar {
+    /*background: #5aa;*/
+    background-image: url('images/1457652300.png');
+    background-repeat: no-repeat;
+    background-size: 400px;
+    background-position: center;
+    height: 470px;
+    width: 410px;
+    float: left;
+}
+
+#Stars {
+    /*background: #dd5;*/
+    height: auto;
+    width: 548px;
+    float: right;
+}
+
+.StarImg {
+    /*background: #8aa;*/
+    height: auto;
+    width: 360px;
+    padding-left: 125px;
+}
+
+    .StarImg img {
+        height: 30px;
+    }
+
+#WRating {
+    /*background: #55a;*/
+    height: auto;
+    width: 970px;
+    padding: 5px;
+}
+
+
+.Rating {
+    /*background: #a11;*/
+    height: 150px;
+    width: 950px;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 2px #808080;
+}
+
+.Rtop {
+    /*background: #2ee;*/
+    height: 150px;
+    width: 500px;
+}
+
+.ImgRating {
+    /*background: #b23;*/
+    height: 108px;
+    width: 130px;
+    float: left;
+    text-align: center;
+}
+
+    .ImgRating img {
+        height: 100px;
+        border-radius: 50px;
+    }
+
+.TextRating {
+    /*background: #a51;*/
+    height: 108px;
+    width: 790px;
+    float: left;
+}
+
+.Ttop {
+    height: auto;
+    width: 360px;
 }

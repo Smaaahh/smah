@@ -13,54 +13,52 @@
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="wrapform">
-            <table>
-                <tr>
-                    <td>@Html.Label("Nom", htmlAttributes: new { @class = "" })</td>
-                    <td>
-                        @Html.Editor("Nom", new { htmlAttributes = new { @class = "form-control" } })
-                    </td>
-                </tr>
-                <tr>
-                    <td>@Html.Label("Prenom", htmlAttributes: new { @class = "" })</td>
-                    <td>@Html.Editor("Prenom", new { htmlAttributes = new { @class = "form-control" } })</td>
-                </tr>
-                <tr>
-                    <td>@Html.Label("Pseudo", htmlAttributes: new { @class = "" })</td>
-                    <td>@Html.Editor("Pseudo", new { htmlAttributes = new { @class = "form-control" } })</td>
-                </tr>
-                <tr>
-                    <td>@Html.Label("E-mail", htmlAttributes: new { @class = "" })</td>
-                    <td>@Html.Editor("E-mail", new { htmlAttributes = new { @class = "form-control " } })</td>
-                </tr>
-                <tr>
-                    <td>@Html.Label("Mot de Passe", htmlAttributes: new { @class = "" })</td>
-                    <td>@Html.Editor("Mot de Passe", new { htmlAttributes = new { @class = "form-control " } })</td>
+        <table>
+            <tr>
+                <td>@Html.Label("Nom", htmlAttributes: new { @class = "" })</td>
+                <td>
+                    @Html.Editor("Nom", new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Prenom", htmlAttributes: new { @class = "" })</td>
+                <td>@Html.Editor("Prenom", new { htmlAttributes = new { @class = "form-control" } })</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Pseudo", htmlAttributes: new { @class = "" })</td>
+                <td>@Html.Editor("Pseudo", new { htmlAttributes = new { @class = "form-control" } })</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("E-mail", htmlAttributes: new { @class = "" })</td>
+                <td>@Html.Editor("E-mail", new { htmlAttributes = new { @class = "form-control " } })</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Mot de Passe", htmlAttributes: new { @class = "" })</td>
+                <td>@Html.Editor("Mot de Passe", new { htmlAttributes = new { @class = "form-control " } })</td>
 
-                </tr>
-                <tr>
-                    <td>@Html.Label("N Téléphone", htmlAttributes: new { @class = " " })</td>
-                    <td>@Html.Editor("N Téléphone", new { htmlAttributes = new { @class = "form-control" } })</td>
-                </tr>
-                <tr>
-                    <td>@Html.Label("Image", htmlAttributes: new { @class = "" })</td>
-                    <td>@Html.TextBox("file", "", new { type = "file", @class = "form-control" })</td>
-                </tr>
-            </table>
+            </tr>
+            <tr>
+                <td>@Html.Label("N° Téléphone", htmlAttributes: new { @class = " " })</td>
+                <td>@Html.Editor("N° Téléphone", new { htmlAttributes = new { @class = "form-control" } })</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Image", htmlAttributes: new { @class = "" })</td>
+                <td>@Html.TextBox("file", "", new { type = "file", @class = "form-control" })</td>
+            </tr>
+        </table>
 
-            <div class="sub">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-            <div class="alerts">
-                @Html.ValidationMessage("Nom", "", new { @class = "text-danger" })<br />
-                @Html.ValidationMessage("Prenom", "", new { @class = "text-danger" })<br />
-                @Html.ValidationMessage("Pseudo", "", new { @class = "text-danger" })<br />
-                @Html.ValidationMessage("E-mail", "", new { @class = "text-danger" })<br />
-                @Html.ValidationMessage("Mot de Passe", "", new { @class = "text-danger" })<br />
-                @Html.ValidationMessage("Numero de Téléphone", "", new { @class = "text-danger" })<br />
-                @Html.ValidationMessage("Image", "", new { @class = "text-danger" })
-            </div>
-
+        <div class="sub">
+            <input type="submit" value="Create" class="btn btn-default" />
         </div>
+        <div class="alerts">
+            @Html.ValidationMessage("Nom", "", new { @class = "text-danger" })<br />
+            @Html.ValidationMessage("Prenom", "", new { @class = "text-danger" })<br />
+            @Html.ValidationMessage("Pseudo", "", new { @class = "text-danger" })<br />
+            @Html.ValidationMessage("E-mail", "", new { @class = "text-danger" })<br />
+            @Html.ValidationMessage("Mot de Passe", "", new { @class = "text-danger" })<br />
+            @Html.ValidationMessage("Numero de Téléphone", "", new { @class = "text-danger" })<br />
+            @Html.ValidationMessage("Image", "", new { @class = "text-danger" })
+        </div>
+
     </div>
 }
