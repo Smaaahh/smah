@@ -26,68 +26,84 @@ function initMap() {
 
     var uluru = { lat: 48.864716, lng: 2.349014 };
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 7,
+        zoom: 6,
         center: uluru,
         styles: styler
     });
-    var infoWindow = new google.maps.InfoWindow({ map: map });
+
     var listeDriverFree;
-    
+    var iconVoiture = {
+        url: "../content/images/car2.png",
+        // This marker is 20 pixels wide by 32 pixels high.
+        size: new google.maps.Size(32, 20),
+        // The origin for this image is (0, 0).
+        origin: new google.maps.Point(0, 0),
+        // The anchor for this image is the base of the flagpole at (0, 32).
+        anchor: new google.maps.Point(16, 20)
+    };
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "/ajax/GetDriversFree", true);
+    xhr.onreadystatechange = function () {
+
+        if (xhr.status === 200) {
+            if (xhr.readyState === 4) {
+
+                if (xhr.responseText != null) {
+                    listeDriverFree = JSON.parse(xhr.responseText);
+                    
+                    for (i = 0; i < listeDriverFree.length; i++) {
+                        var pos = {
+                            lat: listeDriverFree[i].PosX,
+                            lng: listeDriverFree[i].PosY
+                        };
+                        
+                        marker = new google.maps.Marker({
+                            position: pos,
+                            map: map,
+                            icon: iconVoiture
+                        });
+                    }
+                }
+            }
+        }
+    };
+
+    xhr.send();
 
     if (navigator.geolocation) {
+        var iconPerson = {
+            url: "../content/images/map-marker64.png",
+            // This marker is 20 pixels wide by 32 pixels high.
+            size: new google.maps.Size(64, 64),
+            // The origin for this image is (0, 0).
+            origin: new google.maps.Point(0,0),
+            // The anchor for this image is the base of the flagpole at (0, 32).
+            anchor: new google.maps.Point(32,64)
+        };
         navigator.geolocation.getCurrentPosition(function (position) {
             var pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-
-            //infoWindow.setPosition(pos);
-            //infoWindow.setContent('Location found.');
+            
             map.setCenter(pos);
             marker = new google.maps.Marker({
                 position: pos,
-                map: map
+                map: map,
+                icon: iconPerson
             });
+            map.setZoom(10);
         }, function () {
-            handleLocationError(true, infoWindow, map.getCenter());
+            handleLocationError(true, map.getCenter());
         });
     } else {
         // Browser doesn't support Geolocation
-        handleLocationError(false, infoWindow, map.getCenter());
+        handleLocationError(false, map.getCenter());
     }
 }
 
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ?
+function handleLocationError(browserHasGeolocation, pos) {
+    console.log(browserHasGeolocation ?
         'Error: The Geolocation service failed.' :
         'Error: Your browser doesn\'t support geolocation.');
 }
-$(document).ready(function () {
-    $("#test").on("click", function () {
-        
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "http://192.168.11.54:51453/api/Drivers", true);
-        xhr.onreadystatechange = function () {
-            
-            if (xhr.status === 200) {
-                if (xhr.readyState === 4) {
-                    xmlDoc = xhr.responseXML;
-                    console.log(xmlDoc);
-                    txt = "";
-                    x = xmlDoc.getElementsByTagName("Driver");
-                    for (i = 0; i < x.length; i++) {
-                        console.log("youhou" + x[i].childNodes[0]);
-                        txt += x[i].childNodes[0].Driver + "<br>";
-                    }
-                    console.log(txt);
-                }
-            }
-            else {
-                console.log( xhr)
-            }
-        };
-
-        xhr.send();
-    });
-});
