@@ -32,27 +32,7 @@ function initMap() {
     });
     var infoWindow = new google.maps.InfoWindow({ map: map });
     var listeDriverFree;
-    var xhr = new XMLHttpRequest();
-    xhr.open("get", "http://localhost:51453/api/Drivers", true);
-    xhr.send(null);
-    xhr.onreadystatechange = function () {
-        if (xhr.status === 200) {
-            if (xhr.readyState === 4) {
-                xmlDoc = xhr.responseXML;
-                console.log(xmlDoc);
-                txt = "";
-                x = xmlDoc.getElementsByTagName("Driver");
-                for (i = 0; i < x.length; i++) {
-                    console.log(x[i].childNodes[0]);
-                    txt += x[i].childNodes[0].Driver + "<br>";
-                }
-                console.log(txt);
-            }
-        }
-        else {
-            console.log("error " + xhr.status)
-        }
-    }
+    
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -83,4 +63,31 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         'Error: The Geolocation service failed.' :
         'Error: Your browser doesn\'t support geolocation.');
 }
-    
+$(document).ready(function () {
+    $("#test").on("click", function () {
+        
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://192.168.11.54:51453/api/Drivers", true);
+        xhr.onreadystatechange = function () {
+            
+            if (xhr.status === 200) {
+                if (xhr.readyState === 4) {
+                    xmlDoc = xhr.responseXML;
+                    console.log(xmlDoc);
+                    txt = "";
+                    x = xmlDoc.getElementsByTagName("Driver");
+                    for (i = 0; i < x.length; i++) {
+                        console.log("youhou" + x[i].childNodes[0]);
+                        txt += x[i].childNodes[0].Driver + "<br>";
+                    }
+                    console.log(txt);
+                }
+            }
+            else {
+                console.log( xhr)
+            }
+        };
+
+        xhr.send();
+    });
+});

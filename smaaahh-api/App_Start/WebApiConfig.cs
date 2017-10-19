@@ -11,9 +11,9 @@ namespace smaaahh_api
         public static void Register(HttpConfiguration config)
         {
             // Configuration et services API Web
-            EnableCorsAttribute cors = new EnableCorsAttribute("http://localhost:51437", "*", "*");
+            
+            config.EnableCors();
 
-            config.EnableCors(cors);
             // Itinéraires de l'API Web
             config.MapHttpAttributeRoutes();
 
