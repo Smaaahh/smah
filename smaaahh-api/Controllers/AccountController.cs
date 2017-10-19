@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using smaaahh_dao;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
 namespace smaaahh_api.Controllers
 {
@@ -30,7 +31,6 @@ namespace smaaahh_api.Controllers
         }
 
         // GET: Membership
-
         [HttpGet]
         [Route("api/Account/Authenticate")]
         public async Task<string> Authenticate(String email, String password, String type)
@@ -44,94 +44,24 @@ namespace smaaahh_api.Controllers
 
         [Route("api/Account/Get")]
         [TokenAuthenticate]
-        public string Get(int id)
+        public string Get(string email, String type)
         {
-            return "Vous etes connecté";
-        }
-
-        // GET: api/Admins
-        public IQueryable<Admin> GetAdmins()
-        {
-            return db.Admins;
-        }
-
-        // GET: api/Admins/5
-        [ResponseType(typeof(Admin))]
-        public IHttpActionResult GetAdmin(int id)
-        {
-            Admin admin = db.Admins.Find(id);
-            if (admin == null)
+            User user = null;
+            switch (type)
             {
-                return NotFound();
+                case "driver":
+                    user = db.Drivers.First(t=> t.Email == email);
+                    break;
+                case "rider":
+                    user = db.Riders.First(t => t.Email == email);
+                    break;
+                case "admin":
+                    user = db.Admins.First(t => t.Email == email);
+                    break;
             }
+            var jsonSerialiser = new JavaScriptSerializer();
 
-            return Ok(admin);
-        }
-
-        // PUT: api/Admins/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutAdmin(int id, Admin admin)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != admin.AdminId)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(admin).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AdminExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST: api/Admins
-        [ResponseType(typeof(Admin))]
-        public IHttpActionResult PostAdmin(Admin admin)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Admins.Add(admin);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = admin.AdminId }, admin);
-        }
-
-        // DELETE: api/Admins/5
-        [ResponseType(typeof(Admin))]
-        public IHttpActionResult DeleteAdmin(int id)
-        {
-            Admin admin = db.Admins.Find(id);
-            if (admin == null)
-            {
-                return NotFound();
-            }
-
-            db.Admins.Remove(admin);
-            db.SaveChanges();
-
-            return Ok(admin);
+            return jsonSerialiser.Serialize(user);
         }
 
         protected override void Dispose(bool disposing)
