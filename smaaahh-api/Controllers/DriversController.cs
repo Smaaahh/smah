@@ -25,7 +25,6 @@ namespace smaaahh_api.Controllers
         }
         
         [Route("api/Drivers/Free")]
-        [EnableCors(origins: "http://localhost:51437", headers: "*", methods: "*")]
         public IQueryable<Driver> GetDriversFree()
         {
             return db.Drivers.Where(f =>f.Free == true && f.Active == true && f.State == Driver.DriverState.Enabled);
