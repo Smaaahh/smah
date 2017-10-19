@@ -33,12 +33,20 @@ function initMap() {
     var infoWindow = new google.maps.InfoWindow({ map: map });
     var listeDriverFree;
     var xhr = new XMLHttpRequest();
-    xhr.open("get", "http://localhost:51453/api/Drivers/Free", true);
+    xhr.open("get", "http://localhost:51453/api/Drivers", true);
     xhr.send(null);
     xhr.onreadystatechange = function () {
-        if (xhr.status == 200) {
-            if (xhr.readyState == 4) {
-                Alert(xhr.responseText);
+        if (xhr.status === 200) {
+            if (xhr.readyState === 4) {
+                xmlDoc = xhr.responseXML;
+                console.log(xmlDoc);
+                txt = "";
+                x = xmlDoc.getElementsByTagName("Driver");
+                for (i = 0; i < x.length; i++) {
+                    console.log(x[i].childNodes[0]);
+                    txt += x[i].childNodes[0].Driver + "<br>";
+                }
+                console.log(txt);
             }
         }
         else {
