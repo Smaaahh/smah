@@ -44,7 +44,7 @@ namespace smaaahh_api.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != admin.AdminId)
+            if (id != admin.UserId)
             {
                 return BadRequest();
             }
@@ -82,7 +82,7 @@ namespace smaaahh_api.Controllers
             db.Admins.Add(admin);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = admin.AdminId }, admin);
+            return CreatedAtRoute("DefaultApi", new { id = admin.UserId }, admin);
         }
 
         // DELETE: api/Admins/5
@@ -112,7 +112,7 @@ namespace smaaahh_api.Controllers
 
         private bool AdminExists(int id)
         {
-            return db.Admins.Count(e => e.AdminId == id) > 0;
+            return db.Admins.Count(e => e.UserId == id) > 0;
         }
     }
 }

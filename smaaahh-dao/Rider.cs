@@ -14,9 +14,7 @@ namespace smaaahh_dao
             Enabled,
             Disabled
         }
-
-        [Key]
-        public int RiderId { get; set; }
+        
         public double Rating { get; set; }
         
         public double PosX { get; set; }

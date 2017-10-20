@@ -62,8 +62,8 @@ namespace smaaahh_api.Controllers
             {
 
             }
-            var jsonSerialiser = new JavaScriptSerializer();
 
+            var jsonSerialiser = new JavaScriptSerializer();
             return jsonSerialiser.Serialize(user);
         }
 
@@ -75,17 +75,6 @@ namespace smaaahh_api.Controllers
             }
             base.Dispose(disposing);
         }
-
-        private bool UserExists(int id, string type)
-        {
-            if (type == "rider")
-                return db.Riders.Count(e => e.RiderId == id) > 0;
-            else if (type == "driver")
-                return db.Riders.Count(e => e.RiderId == id) > 0;
-
-            return false;
-        }
-
         
     }
 }

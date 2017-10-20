@@ -9,6 +9,8 @@ namespace smaaahh_web
 {
     public abstract class User
     {
+        public int UserId;
+
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [DataType(DataType.PhoneNumber)]

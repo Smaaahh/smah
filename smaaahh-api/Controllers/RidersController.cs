@@ -44,7 +44,7 @@ namespace smaaahh_api.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != rider.RiderId)
+            if (id != rider.UserId)
             {
                 return BadRequest();
             }
@@ -82,7 +82,7 @@ namespace smaaahh_api.Controllers
             db.Riders.Add(rider);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = rider.RiderId }, rider);
+            return CreatedAtRoute("DefaultApi", new { id = rider.UserId }, rider);
         }
 
         // DELETE: api/Riders/5
@@ -113,7 +113,7 @@ namespace smaaahh_api.Controllers
 
         private bool RiderExists(int id)
         {
-            return db.Riders.Count(e => e.RiderId == id) > 0;
+            return db.Riders.Count(e => e.UserId == id) > 0;
         }
     }
 }

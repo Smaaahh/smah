@@ -54,7 +54,7 @@ namespace smaaahh_api.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != driver.DriverId)
+            if (id != driver.UserId)
             {
                 return BadRequest();
             }
@@ -92,7 +92,7 @@ namespace smaaahh_api.Controllers
             db.Drivers.Add(driver);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = driver.DriverId }, driver);
+            return CreatedAtRoute("DefaultApi", new { id = driver.UserId }, driver);
         }
 
         // DELETE: api/Drivers/5
@@ -122,7 +122,7 @@ namespace smaaahh_api.Controllers
 
         private bool DriverExists(int id)
         {
-            return db.Drivers.Count(e => e.DriverId == id) > 0;
+            return db.Drivers.Count(e => e.UserId == id) > 0;
         }
         
     }

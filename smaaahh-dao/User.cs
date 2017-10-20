@@ -10,6 +10,9 @@ namespace smaaahh_dao
 {
     public abstract class User
     {
+        [Key]
+        public int UserId { get; set; }
+
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [DataType(DataType.PhoneNumber)]
