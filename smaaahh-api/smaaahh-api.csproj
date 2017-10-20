@@ -206,6 +206,7 @@
     <Compile Include="Controllers\CarsController.cs" />
     <Compile Include="Controllers\DriversController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ParamsController.cs" />
     <Compile Include="Controllers\RideRequestsController.cs" />
     <Compile Include="Controllers\RidesController.cs" />
     <Compile Include="Controllers\RidersController.cs" />
