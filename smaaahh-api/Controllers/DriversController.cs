@@ -104,8 +104,8 @@ namespace smaaahh_api.Controllers
             {
                 return NotFound();
             }
-
-            db.Drivers.Remove(driver);
+            driver.State = Driver.DriverState.Disabled;
+            db.Entry(driver).Property("State").IsModified = true;
             db.SaveChanges();
 
             return Ok(driver);

@@ -31,9 +31,8 @@ namespace smaaahh_api.Controllers
         }
 
         // GET: Membership
-        [HttpGet]
         [Route("api/Account/Authenticate")]
-        public async Task<string> Authenticate(String email, String password, String type)
+        public async Task<string> GetAuthenticate(String email, String password, String type)
         {
             MemberShipProvider m = new MemberShipProvider();
             RSAKeyProvider r = new RSAKeyProvider();
