@@ -17,9 +17,9 @@ namespace smaaahh_api.Controllers
         private Db db = new Db();
 
         // GET: api/Rides
-        public IQueryable<Ride> GetRide()
+        public IHttpActionResult GetRide()
         {
-            return db.Rides;
+            return Json(db.Rides.ToList());
         }
 
         // GET: api/Rides/5
