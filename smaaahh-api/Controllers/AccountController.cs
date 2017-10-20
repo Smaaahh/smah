@@ -41,9 +41,9 @@ namespace smaaahh_api.Controllers
             return Token;
         }
 
-        [Route("api/Account/Get")]
         [TokenAuthenticate]
-        public string Get(string email, String type)
+        [Route("api/Account")]
+        public string GetFind(String email, String type)
         {
             User user = null;
             try
