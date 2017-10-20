@@ -22,7 +22,9 @@ namespace smaaahh_web.Controllers
             user.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
             if (needAuth)
+            {
                 user.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session["token"].ToString());
+            }
 
             HttpResponseMessage response = await user.GetAsync(url);
             if (response.IsSuccessStatusCode)
@@ -31,5 +33,31 @@ namespace smaaahh_web.Controllers
             }
             return s;
         }
+
+        public async Task<string> CreateAPIItemAsync<T>(string url, T item)
+        {
+            HttpClient user = new HttpClient();
+            user.BaseAddress = new Uri(UrlApi);
+            user.DefaultRequestHeaders.Accept.Clear();
+            HttpResponseMessage response = await user.PostAsJsonAsync(url, item);
+            response.EnsureSuccessStatusCode();
+
+            // Return the URI of the created resource.
+            return response.Headers.Location.ToString();
+        }
+
+        public async Task<bool> UpdateAPIItemAsync<T>(string url, T item)
+        {
+            HttpClient user = new HttpClient();
+            user.BaseAddress = new Uri(UrlApi);
+            user.DefaultRequestHeaders.Accept.Clear();
+            HttpResponseMessage response = await user.PutAsJsonAsync(url, item);
+            response.EnsureSuccessStatusCode();
+
+            // Deserialize the updated product from the response body.
+            //item = await response.Content.ReadAsAsync<T>();
+            return true;
+        }
+
     }
 }
