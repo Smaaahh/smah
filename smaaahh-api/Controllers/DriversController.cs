@@ -46,7 +46,7 @@ namespace smaaahh_api.Controllers
         }
 
         // PUT: api/Drivers/5
-        [HttpGet]
+        
         [ResponseType(typeof(void))]
         public IHttpActionResult PutDriver(int id, Driver driver)
         {
