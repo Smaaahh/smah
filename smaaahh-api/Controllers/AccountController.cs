@@ -47,17 +47,24 @@ namespace smaaahh_api.Controllers
         public string Get(string email, String type)
         {
             User user = null;
-            switch (type)
+            try
             {
-                case "driver":
-                    user = db.Drivers.First(t=> t.Email == email);
-                    break;
-                case "rider":
-                    user = db.Riders.First(t => t.Email == email);
-                    break;
-                case "admin":
-                    user = db.Admins.First(t => t.Email == email);
-                    break;
+                switch (type)
+                {
+                    case "driver":
+                        user = db.Drivers.First(t => t.Email == email);
+                        break;
+                    case "rider":
+                        user = db.Riders.First(t => t.Email == email);
+                        break;
+                    case "admin":
+                        user = db.Admins.First(t => t.Email == email);
+                        break;
+                }
+            }
+            catch(Exception e)
+            {
+
             }
             var jsonSerialiser = new JavaScriptSerializer();
 
