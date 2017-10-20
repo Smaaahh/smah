@@ -95,7 +95,8 @@ namespace smaaahh_api.Controllers
                 return NotFound();
             }
 
-            db.Riders.Remove(rider);
+            rider.State = Rider.RiderState.Disabled;
+            db.Entry(rider).Property("State").IsModified = true;
             db.SaveChanges();
 
             return Ok(rider);

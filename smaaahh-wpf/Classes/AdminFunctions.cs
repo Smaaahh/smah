@@ -1,4 +1,5 @@
-﻿using System;
+﻿using smaaahh_wpf.Modeles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -28,6 +29,65 @@ namespace smaaahh_wpf.Classes
 
         }
 
-        
+        public static List<Driver> GetDrivers()
+        {
+            List<Driver> listDrivers = new List<Driver>();
+
+            Task.Run(async () =>
+            {
+                listDrivers = await GetDriversAPI();
+            }).Wait();
+
+            return listDrivers;
+        }
+
+        public async static Task<List<Driver>> GetDriversAPI()
+        {
+            return await CallApi<List<Driver>>($"api/Drivers");
+
+        }
+
+        public static List<Rider> GetRiders()
+        {
+            List<Rider> listRiders = new List<Rider>();
+
+            Task.Run(async () =>
+            {
+                listRiders = await GetRidersAPI();
+            }).Wait();
+
+            return listRiders;
+        }
+
+        public async static Task<List<Rider>> GetRidersAPI()
+        {
+            return await CallApi<List<Rider>>($"api/Riders");
+
+        }
+
+        public static bool updateUser<T>(T monItem, string type, int id)
+        {
+            bool result=false;
+            Task.Run(async () =>
+            {
+                result = await updateUserAPI(monItem, type, id);
+            }).Wait();
+
+            return result;
+        }
+
+        public async static Task<bool> updateUserAPI<T>(T monItem, string type, int id)
+        {
+            switch (type)
+            {
+                case "driver":
+                    return await Functions.UpdateAPIItemAsync<T>($"api/Drivers/{id}", monItem );
+                    break;
+                case "rider":
+                    return await Functions.UpdateAPIItemAsync<T>($"api/Riders/{id}", monItem);
+                    break;
+            }
+            return false;
+        }
     }
 }

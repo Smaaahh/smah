@@ -29,7 +29,7 @@ namespace smaaahh_dao
         public int PlaceNumber { get; set; }
         public DateTime DateCreation { get; set; }
         public DateTime DateStart { get; set; }
-        public DateTime DateEnd { get; set; }
+        public DateTime? DateEnd { get; set; }
 
         public PaymentType Payment { get; set; }
 
@@ -37,7 +37,7 @@ namespace smaaahh_dao
 
         [ForeignKey("PromotionCodeId")]
         public virtual PromotionCode PromotionCode { get; set; }
-        public int PromotionCodeId { get; set; }
+        public int? PromotionCodeId { get; set; }
         
         public Ride()
         { }

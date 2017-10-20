@@ -12,44 +12,44 @@ using smaaahh_dao;
 
 namespace smaaahh_api.Controllers
 {
-    public class RidesController : ApiController
+    public class ParamsController : ApiController
     {
         private Db db = new Db();
 
-        // GET: api/Rides
-        public IHttpActionResult GetRide()
+        // GET: api/Params
+        public IQueryable<Params> GetParams()
         {
-            return Json(db.Rides.ToList());
+            return db.Params;
         }
 
-        // GET: api/Rides/5
-        [ResponseType(typeof(Ride))]
-        public IHttpActionResult GetRide(int id)
+        // GET: api/Params/5
+        [ResponseType(typeof(Params))]
+        public IHttpActionResult GetParams(int id)
         {
-            Ride ride = db.Rides.Find(id);
-            if (ride == null)
+            Params @params = db.Params.Find(id);
+            if (@params == null)
             {
                 return NotFound();
             }
 
-            return Ok(ride);
+            return Ok(@params);
         }
 
-        // PUT: api/Rides/5
+        // PUT: api/Params/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutRide(int id, Ride ride)
+        public IHttpActionResult PutParams(int id, Params @params)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != ride.RideId)
+            if (id != @params.ParamsId)
             {
                 return BadRequest();
             }
 
-            db.Entry(ride).State = EntityState.Modified;
+            db.Entry(@params).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace smaaahh_api.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RideExists(id))
+                if (!ParamsExists(id))
                 {
                     return NotFound();
                 }
@@ -70,37 +70,21 @@ namespace smaaahh_api.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Rides
-        [ResponseType(typeof(Ride))]
-        public IHttpActionResult PostRide(Ride ride)
+        // POST: api/Params
+        [ResponseType(typeof(Params))]
+        public IHttpActionResult PostParams(Params @params)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Rides.Add(ride);
+            db.Params.Add(@params);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = ride.RideId }, ride);
+            return CreatedAtRoute("DefaultApi", new { id = @params.ParamsId }, @params);
         }
-
-        // DELETE: api/Rides/5
-        [ResponseType(typeof(Ride))]
-        public IHttpActionResult DeleteRide(int id)
-        {
-            Ride ride = db.Rides.Find(id);
-            if (ride == null)
-            {
-                return NotFound();
-            }
-
-            db.Rides.Remove(ride);
-            db.SaveChanges();
-
-            return Ok(ride);
-        }
-
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -110,9 +94,9 @@ namespace smaaahh_api.Controllers
             base.Dispose(disposing);
         }
 
-        private bool RideExists(int id)
+        private bool ParamsExists(int id)
         {
-            return db.Rides.Count(e => e.RideId == id) > 0;
+            return db.Params.Count(e => e.ParamsId == id) > 0;
         }
     }
 }

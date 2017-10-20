@@ -8,8 +8,6 @@ namespace smaaahh_wpf.Modeles
 {
     public class Driver : User
     {
-        
-
         public int DriverId { get; set; }
         public double Rating { get; set; }
         public double PosX { get; set; }
@@ -22,8 +20,6 @@ namespace smaaahh_wpf.Modeles
         public Driver()
         {
         }
-
-
     }
 
     public enum DriverState
