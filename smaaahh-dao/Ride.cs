@@ -37,7 +37,7 @@ namespace smaaahh_dao
 
         [ForeignKey("PromotionCodeId")]
         public virtual PromotionCode PromotionCode { get; set; }
-        public int PromotionCodeId { get; set; }
+        public int? PromotionCodeId { get; set; }
         
         public Ride()
         { }

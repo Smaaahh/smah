@@ -57,9 +57,6 @@ namespace smaaahh_api.Controllers
                     case "rider":
                         user = db.Riders.First(t => t.Email == email);
                         break;
-                    case "admin":
-                        user = db.Admins.First(t => t.Email == email);
-                        break;
                 }
             }
             catch(Exception e)
@@ -80,9 +77,14 @@ namespace smaaahh_api.Controllers
             base.Dispose(disposing);
         }
 
-        private bool AdminExists(int id)
+        private bool UserExists(int id, string type)
         {
-            return db.Admins.Count(e => e.AdminId == id) > 0;
+            if (type == "rider")
+                return db.Riders.Count(e => e.RiderId == id) > 0;
+            else if (type == "driver")
+                return db.Riders.Count(e => e.RiderId == id) > 0;
+
+            return false;
         }
 
         

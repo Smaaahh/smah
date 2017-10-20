@@ -24,6 +24,20 @@ namespace smaaahh_web
         {
 
         }
+
+        public double getRating()
+        {
+            if (this is Driver)
+            {
+                return (this as Driver).Rating;
+            }
+            if (this is Rider)
+            {
+                return (this as Rider).Rating;
+            }
+            return 0;
+        }
+        
     }
 
 }

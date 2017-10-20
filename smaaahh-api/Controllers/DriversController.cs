@@ -20,18 +20,17 @@ namespace smaaahh_api.Controllers
         private Db db = new Db();
 
         // GET: api/Drivers
-        [HttpGet]
         public IQueryable<Driver> GetDrivers()
         {
             return db.Drivers;
         }
         
         [Route("api/Drivers/Free")]
-        [HttpGet]
         public IQueryable<Driver> GetDriversFree()
         {
             return db.Drivers.Where(f =>f.Free == true && f.Active == true && f.State == Driver.DriverState.Enabled);
         }
+
         // GET: api/Drivers/5
         [ResponseType(typeof(Driver))]
         public IHttpActionResult GetDriver(int id)
