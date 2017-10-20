@@ -16,7 +16,6 @@ namespace smaaahh_web
             Disabled
         }
         
-        public int DriverId { get; set; }
         public double Rating { get; set; }
         public double PosX { get; set; }
         public double PosY { get; set; }

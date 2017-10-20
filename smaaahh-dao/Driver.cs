@@ -15,9 +15,7 @@ namespace smaaahh_dao
             Enabled,
             Disabled
         }
-
-        [Key]
-        public int DriverId { get; set; }
+        
         public double Rating { get; set; }
         public double PosX { get; set; }
         public double PosY { get; set; }
