@@ -14,6 +14,8 @@ namespace smaaahh_web.Controllers
     {
         public ActionResult Login()
         {
+            ViewBag.Message = Session["Message"];
+            Session["Message"]="";
             return View();
         }
 
@@ -151,30 +153,6 @@ namespace smaaahh_web.Controllers
 
 
 
-        public async Task<string> GetToken(string Email, string Password, string Type)
-        {
-            return await CallApi<string>($"api/Account/Authenticate?email={Email}&password={Password}&type={Type}", false);
-        }
-
-        public async Task<string> GetInfo(int? id)
-        {
-            return await CallApi<string>($"api/Account/Get?id=" + id, true);
-        }
-
-        public async Task<Rider> GetRider(string email)
-        {
-            return await CallApi<Rider>($"api/Account/?email={email}&type=rider", true);
-        }
-
-        public async Task<Driver> GetDriver(string email)
-        {
-            return await CallApi<Driver>($"api/Account/?email={email}&type=driver", true);
-        }
-
-        public async Task<bool> UpdateDriver(Driver driver)
-        {
-            return await UpdateAPIItemAsync<Driver>($"api/Drivers/?id={driver.UserId}", driver);
-
-        }
+        
     }
 }

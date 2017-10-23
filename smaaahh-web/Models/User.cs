@@ -30,6 +30,17 @@ namespace smaaahh_web
 
         }
 
+        public User(string Nom, string Prenom, string Pseudo, string Email, string Password, string NTelephone, string Image)
+        {
+            LastName = Nom;
+            FirstName = Prenom;
+            UserName = Pseudo;
+            this.Email = Email;
+            this.Password = Password;
+            Phone = NTelephone;
+            ImgProfil = Image;
+        }
+
         public double getRating()
         {
             if (this is Driver)

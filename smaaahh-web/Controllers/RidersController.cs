@@ -18,5 +18,10 @@ namespace smaaahh_web.Controllers
         {
             return View();
         }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
     }
 }

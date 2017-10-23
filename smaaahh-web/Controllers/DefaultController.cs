@@ -34,16 +34,24 @@ namespace smaaahh_web.Controllers
             return s;
         }
 
-        public async Task<string> CreateAPIItemAsync<T>(string url, T item)
+
+        public async Task<T> CreateAPIItemAsync<T>(string url, T item)
         {
             HttpClient user = new HttpClient();
             user.BaseAddress = new Uri(UrlApi);
             user.DefaultRequestHeaders.Accept.Clear();
-            HttpResponseMessage response = await user.PostAsJsonAsync(url, item);
-            response.EnsureSuccessStatusCode();
+            user.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage response = await user.PostAsJsonAsync<T>(url, item);
+            T s = default(T);
+           // response.EnsureSuccessStatusCode();
 
+           if (response.IsSuccessStatusCode)
+            {
+                s = await response.Content.ReadAsAsync<T>();
+            }
             // Return the URI of the created resource.
-            return response.Headers.Location.ToString();
+            //return response.Headers.Location.ToString();
+            return s;
         }
 
         public async Task<bool> UpdateAPIItemAsync<T>(string url, T item)
@@ -51,6 +59,7 @@ namespace smaaahh_web.Controllers
             HttpClient user = new HttpClient();
             user.BaseAddress = new Uri(UrlApi);
             user.DefaultRequestHeaders.Accept.Clear();
+            user.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             HttpResponseMessage response = await user.PutAsJsonAsync(url, item);
             response.EnsureSuccessStatusCode();
 
@@ -59,5 +68,49 @@ namespace smaaahh_web.Controllers
             return true;
         }
 
+        public async Task<string> GetToken(string Email, string Password, string Type)
+        {
+            return await CallApi<string>($"api/Account/Authenticate?email={Email}&password={Password}&type={Type}", false);
+        }
+
+        public async Task<string> GetInfo(int? id)
+        {
+            return await CallApi<string>($"api/Account/Get?id=" + id, true);
+        }
+
+        public async Task<Rider> GetRider(string email)
+        {
+            return await CallApi<Rider>($"api/Account/?email={email}&type=rider", true);
+        }
+
+        public async Task<Driver> GetDriver(string email)
+        {
+            return await CallApi<Driver>($"api/Account/?email={email}&type=driver", true);
+        }
+        //
+        public async Task<bool> UpdateDriver(Driver driver)
+        {
+            return await UpdateAPIItemAsync<Driver>($"api/Drivers/?id={driver.UserId}", driver);
+
+        }
+        
+
+        public async Task<T> CreateItem<T>(T item, string type)
+        {
+            string url = "";
+            switch(type)
+            {
+                case "car":
+                    url = $"api/Cars";
+                    break;
+                case "driver":
+                    url = $"api/Drivers";
+                    break;
+                case "rider":
+                    url = $"api/Riders";
+                    break;
+            }
+            return await CreateAPIItemAsync<T>(url, item);
+        }
     }
 }

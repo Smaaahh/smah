@@ -15,11 +15,20 @@ namespace smaaahh_web
         public string Model { get; set; }
 
         public string CarPlate { get; set; }
-        
-        public Driver Driver { get; set; }
+
+        public int DriverId { get; set; }
+        public virtual Driver Driver { get; set; }
 
         public Car()
         { }
+
+        public Car(string Modele_voiture, int Nbplace_voiture,string Immatriculation, int driverId)
+        {
+            PlaceNumber = Nbplace_voiture;
+            Model = Modele_voiture;
+            CarPlate = Immatriculation;
+            DriverId = driverId;
+        }
 
     }
 }
