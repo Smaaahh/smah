@@ -164,7 +164,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AjaxController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\DriversController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RechercheController.cs" />
+    <Compile Include="Controllers\RidersController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -251,9 +254,14 @@
     </Content>
     <Content Include="Views\Drivers\Create.cshtml" />
     <Content Include="Views\Riders\Create.cshtml" />
+    <Content Include="Views\Users\Login.cshtml" />
+    <Content Include="Views\Drivers\Dashboard.cshtml" />
+    <Content Include="Views\Riders\Dashboard.cshtml" />
+    <Content Include="Views\Recherche\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\images\profils\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Api\" />
     <Folder Include="Views\Default\" />

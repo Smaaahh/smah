@@ -5,40 +5,49 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mon application ASP.NET</title>
-    @*@Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")*@
+
     <link href="~/Content/Site.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
     <script src="~/Scripts/custom.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbefCpK80vGc6pN5VoWTIIaqcAp4dHMb8&callback=initMap"> </script>
-    
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <img src="~/Content/images/smaaahhlogo5.png" class="imglogo" />
+    <div id="WrapAll">
+        <div id="WrapHeadNav">
+            <div id="Head">
+                <div id="Logo">
+                    <img src="~/Content/images/smaaahhlogo5.png" />
+                </div>
+                <div id="Nav">
+                    <ul>
+                        <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
+                        <li>@Html.ActionLink("À propos de", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        @if (Session["UserId"] != null)
+                        {
+                            <li>@Html.ActionLink($"Bienvenue {Session["UserName"]}", "Dashboard", Session["Type"].ToString()+"s")</li>
+                            <li>@Html.ActionLink("Déconnexion", "Logout", "Users")</li>
+                        }
+                        else
+                        {
+                        <li>@Html.ActionLink("Login", "Login", "Users")</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-            <div class="nav">
-                <ul class="nav justify-content-end">
-                    <li class="nav-item">@Html.ActionLink("Accueil", "Index", "Home", new { @class = "nav-link active" })</li>
-                    <li class="nav-item">@Html.ActionLink("À propos de", "About", "Home", new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Login", "Contact", "Home", new { @class = "nav-link" })</li>
+        <div id="Content">
+            @RenderBody()
+        </div>
 
-                </ul>
+        <div id="WrapFooter">
+            <div id="Footer">
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
-
     @*@Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)

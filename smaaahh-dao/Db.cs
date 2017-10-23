@@ -20,6 +20,7 @@ namespace smaaahh_dao
         public DbSet<PromotionCode> PromotionCodes { get; set; }
         public DbSet<Car> Cars { get; set; }
         public DbSet<Rating> Ratings { get; set; }
+        public DbSet<Params> Params { get; set; }
 
         public Db() : base("smaaahh")
         {

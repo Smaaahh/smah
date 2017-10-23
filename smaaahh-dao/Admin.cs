@@ -8,7 +8,6 @@ namespace smaaahh_dao
 {
    public class Admin : User
     {
-        public int AdminId { get; set; }
         public virtual List<Role> Roles { get; set; }
 
         public Admin()

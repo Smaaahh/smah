@@ -15,7 +15,6 @@ namespace smaaahh_web
             Disabled
         }
         
-        public int RiderId { get; set; }
         public double Rating { get; set; }
         
         public double PosX { get; set; }
@@ -27,6 +26,7 @@ namespace smaaahh_web
         {
 
         }
+        
 
 
     }

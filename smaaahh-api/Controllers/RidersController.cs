@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using smaaahh_dao;
+using smaaahh_api.Models;
 
 namespace smaaahh_api.Controllers
 {
@@ -44,7 +45,7 @@ namespace smaaahh_api.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != rider.RiderId)
+            if (id != rider.UserId)
             {
                 return BadRequest();
             }
@@ -78,11 +79,20 @@ namespace smaaahh_api.Controllers
             {
                 return BadRequest(ModelState);
             }
+            bool Error = Users.verifEmail(rider.Email);
 
-            db.Riders.Add(rider);
-            db.SaveChanges();
+            if (!Error)
+            {
+                db.Riders.Add(rider);
+                db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = rider.RiderId }, rider);
+                return CreatedAtRoute("DefaultApi", new { id = rider.UserId }, rider);
+            }
+            else
+            {
+                return BadRequest("Cette adresse mail est déjà utilisée");
+            }
+            
         }
 
         // DELETE: api/Riders/5
@@ -95,7 +105,8 @@ namespace smaaahh_api.Controllers
                 return NotFound();
             }
 
-            db.Riders.Remove(rider);
+            rider.State = Rider.RiderState.Disabled;
+            db.Entry(rider).Property("State").IsModified = true;
             db.SaveChanges();
 
             return Ok(rider);
@@ -112,7 +123,7 @@ namespace smaaahh_api.Controllers
 
         private bool RiderExists(int id)
         {
-            return db.Riders.Count(e => e.RiderId == id) > 0;
+            return db.Riders.Count(e => e.UserId == id) > 0;
         }
     }
 }

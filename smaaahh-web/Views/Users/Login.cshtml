@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*<div class="info"></div>*@
+        <div class="text-danger">
+            @ViewBag.ErrorMessage
+            @ViewBag.Message
+        </div>    <table>
+            <tr>
+                <td>@Html.Label("E-mail", htmlAttributes: new { @class = "" })</td>
+                <td>@Html.Editor("email", new { htmlAttributes = new { @class = "form-control " } })</td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Mot de Passe", htmlAttributes: new { @class = "" })</td>
+                <td>@Html.Editor("password", new { htmlAttributes = new { @class = "form-control " } })</td>
+
+            </tr>
+        </table>
+
+        <div class="sub">
+            <input type="submit" value="Valider" class="btn btn-default" />
+        </div>
+        <div class="alerts">
+            @Html.ValidationMessage("Nom", "", new { @class = "text-danger" })<br />
+            @Html.ValidationMessage("Prenom", "", new { @class = "text-danger" })<br />
+            @Html.ValidationMessage("Pseudo", "", new { @class = "text-danger" })<br />
+            @Html.ValidationMessage("E-mail", "", new { @class = "text-danger" })<br />
+            @Html.ValidationMessage("Mot de Passe", "", new { @class = "text-danger" })<br />
+            @Html.ValidationMessage("Numero de Téléphone", "", new { @class = "text-danger" })<br />
+            @Html.ValidationMessage("Image", "", new { @class = "text-danger" })
+        </div>
+        <div class="">
+            @Html.ActionLink("Créer un compte Passager", "Create", "Riders") / @Html.ActionLink("Créer un compte Conducteur", "Create", "Drivers")
+        </div>
+    </div>
+
+}

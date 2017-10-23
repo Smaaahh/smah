@@ -6,20 +6,10 @@ using System.Web.Mvc;
 
 namespace smaaahh_web.Controllers
 {
-    public class RidersController : Controller
+    public class RechercheController : Controller
     {
-        // GET: Riders
+        // GET: Recherche
         public ActionResult Index()
-        {
-            return View();
-        }
-
-        public ActionResult Dashboard()
-        {
-            return View();
-        }
-
-        public ActionResult Create()
         {
             return View();
         }

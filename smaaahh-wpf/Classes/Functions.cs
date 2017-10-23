@@ -30,5 +30,30 @@ namespace smaaahh_wpf
             return s;
         }
 
+        public static async Task<string> CreateAPIItemAsync<T>(string url, T item)
+        {
+            HttpClient user = new HttpClient();
+            user.BaseAddress = new Uri(ApiUrl);
+            user.DefaultRequestHeaders.Accept.Clear();
+            HttpResponseMessage response = await user.PostAsJsonAsync(url, item);
+            response.EnsureSuccessStatusCode();
+
+            // Return the URI of the created resource.
+            return response.Headers.Location.ToString();
+        }
+
+        public static async Task<bool> UpdateAPIItemAsync<T>(string url, T item)
+        {
+            HttpClient user = new HttpClient();
+            user.BaseAddress = new Uri(ApiUrl);
+            user.DefaultRequestHeaders.Accept.Clear();
+            HttpResponseMessage response = await user.PutAsJsonAsync(url, item);
+            response.EnsureSuccessStatusCode();
+
+            // Deserialize the updated product from the response body.
+            item = await response.Content.ReadAsAsync<T>();
+            return true;
+        }
+
     }
 }

@@ -6,6 +6,7 @@
         xmlns:core="clr-namespace:System;assembly=mscorlib"
          xmlns:LocalModeles="clr-namespace:smaaahh_wpf.Modeles"
         xmlns:Local="clr-namespace:smaaahh_wpf.ViewModels"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1200">
     <Window.DataContext>
@@ -31,31 +32,44 @@
             </TabItem>
             <TabItem Header="Liste des Chauffeurs">
                 <Grid Background="#FFE5E5E5" >
-
-                    <DataGrid x:Name="listDrivers" AutoGenerateColumns="false" ItemsSource="{Binding}" Margin="0,0,0,43" CanUserDeleteRows="False" CanUserAddRows="False" IsManipulationEnabled="True" RowEditEnding="saveDriver" >
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Nom" Binding="{Binding LastName}" SortDirection="Ascending" />
-                                <DataGridTextColumn Header="Prénom" Binding="{Binding FirstName}" SortDirection="Ascending" />
-                                <DataGridTextColumn Header="Pseudo" Binding="{Binding UserName}" SortDirection="Ascending"/>
-                                <DataGridTextColumn Header="Email" Binding="{Binding Email}" SortDirection="Ascending"/>
+                   
+                    <DataGrid x:Name="listDrivers" AutoGenerateColumns="false" ItemsSource="{Binding MesDrivers}" Margin="0,0,0,43" CanUserDeleteRows="False" CanUserAddRows="False" IsManipulationEnabled="True" >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="RowEditEnding">
+                                <i:InvokeCommandAction Command="{Binding UpdateDriverCommand}" 
+                                 CommandParameter="{Binding SelectedItem, 
+                                                   ElementName=listDrivers}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Nom" Binding="{Binding LastName}" SortDirection="Ascending" />
+                            <DataGridTextColumn Header="Prénom" Binding="{Binding FirstName}" SortDirection="Ascending" />
+                            <DataGridTextColumn Header="Pseudo" Binding="{Binding UserName}" SortDirection="Ascending"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding Email}" SortDirection="Ascending"/>
                             <DataGridTextColumn Header="Téléphone" Binding="{Binding Phone}" SortDirection="Ascending"/>
                             <DataGridComboBoxColumn Header="Etat"  SelectedItemBinding="{Binding State}" ItemsSource="{Binding Source={StaticResource myDriverEnum}}" SortDirection="Ascending" />
                         </DataGrid.Columns>
-                        </DataGrid>
-                         
+                    </DataGrid>
+
                 </Grid>
             </TabItem>
             <TabItem Header="Liste des Clients">
                 <Grid Background="#FFE5E5E5" >
-
-                    <DataGrid x:Name="listRiders" AutoGenerateColumns="false" ItemsSource="{Binding}" Margin="0,0,0,43" CanUserDeleteRows="False" CanUserAddRows="False" IsManipulationEnabled="True" RowEditEnding="saveRider" >
+                    <DataGrid x:Name="listRiders" AutoGenerateColumns="false" ItemsSource="{Binding MesRiders}" Margin="0,0,0,43" CanUserDeleteRows="False" CanUserAddRows="False" IsManipulationEnabled="True"  >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="RowEditEnding">
+                                <i:InvokeCommandAction Command="{Binding updateRider}" 
+                                 CommandParameter="{Binding SelectedItem, 
+                                                   ElementName=ItemsList}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Nom" Binding="{Binding DriverLastName}" SortDirection="Ascending" />
-                            <DataGridTextColumn Header="Prénom" Binding="{Binding DriverFirstName}" SortDirection="Ascending" />
-                            <DataGridTextColumn Header="Pseudo" Binding="{Binding DriverUserName}" SortDirection="Ascending"/>
-                            <DataGridTextColumn Header="Email" Binding="{Binding DriverEmail}" SortDirection="Ascending"/>
-                            <DataGridTextColumn Header="Téléphone" Binding="{Binding DriverPhone}" SortDirection="Ascending"/>
-                            <DataGridComboBoxColumn Header="Etat"  SelectedItemBinding="{Binding DriverState}" ItemsSource="{Binding Source={StaticResource myRiderEnum}}" SortDirection="Ascending" />
+                            <DataGridTextColumn Header="Nom" Binding="{Binding LastName}" SortDirection="Ascending" />
+                            <DataGridTextColumn Header="Prénom" Binding="{Binding FirstName}" SortDirection="Ascending" />
+                            <DataGridTextColumn Header="Pseudo" Binding="{Binding UserName}" SortDirection="Ascending"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding Email}" SortDirection="Ascending"/>
+                            <DataGridTextColumn Header="Téléphone" Binding="{Binding Phone}" SortDirection="Ascending"/>
+                            <DataGridComboBoxColumn Header="Etat"  SelectedItemBinding="{Binding State}" ItemsSource="{Binding Source={StaticResource myRiderEnum}}" SortDirection="Ascending" />
                         </DataGrid.Columns>
                     </DataGrid>
 

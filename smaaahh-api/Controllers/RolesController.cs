@@ -9,47 +9,48 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using smaaahh_dao;
+using smaaahh_api.Filters;
 
 namespace smaaahh_api.Controllers
 {
-    public class RideRequestsController : ApiController
+    public class RolesController : ApiController
     {
         private Db db = new Db();
 
-        // GET: api/RideRequests
-        public IHttpActionResult GetRideRequests()
+        // GET: api/Roles
+        public IQueryable<Role> GetRoles()
         {
-            return Json(db.RideRequests.ToList());
+            return db.Roles;
         }
 
-        // GET: api/RideRequests/5
-        [ResponseType(typeof(RideRequest))]
-        public IHttpActionResult GetRideRequest(int id)
+        // GET: api/Roles/5
+        [ResponseType(typeof(Role))]
+        public IHttpActionResult GetRole(int id)
         {
-            RideRequest rideRequest = db.RideRequests.Find(id);
-            if (rideRequest == null)
+            Role role = db.Roles.Find(id);
+            if (role == null)
             {
                 return NotFound();
             }
 
-            return Ok(rideRequest);
+            return Ok(role);
         }
 
-        // PUT: api/RideRequests/5
+        // PUT: api/Roles/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutRideRequest(int id, RideRequest rideRequest)
+        public IHttpActionResult PutRole(int id, Role role)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != rideRequest.RideRequestID)
+            if (id != role.RoleId)
             {
                 return BadRequest();
             }
 
-            db.Entry(rideRequest).State = EntityState.Modified;
+            db.Entry(role).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +58,7 @@ namespace smaaahh_api.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RideRequestExists(id))
+                if (!RoleExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +71,35 @@ namespace smaaahh_api.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/RideRequests
-        [ResponseType(typeof(RideRequest))]
-        public IHttpActionResult PostRideRequest(RideRequest rideRequest)
+        // POST: api/Roles
+        [ResponseType(typeof(Role))]
+        public IHttpActionResult PostRole(Role role)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.RideRequests.Add(rideRequest);
+            db.Roles.Add(role);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = rideRequest.RideRequestID }, rideRequest);
+            return CreatedAtRoute("DefaultApi", new { id = role.RoleId }, role);
         }
 
-        // DELETE: api/RideRequests/5
-        [ResponseType(typeof(RideRequest))]
-        public IHttpActionResult DeleteRideRequest(int id)
+        // DELETE: api/Roles/5
+        [ResponseType(typeof(Role))]
+        public IHttpActionResult DeleteRole(int id)
         {
-            RideRequest rideRequest = db.RideRequests.Find(id);
-            if (rideRequest == null)
+            Role role = db.Roles.Find(id);
+            if (role == null)
             {
                 return NotFound();
             }
 
-            db.RideRequests.Remove(rideRequest);
+            db.Roles.Remove(role);
             db.SaveChanges();
 
-            return Ok(rideRequest);
+            return Ok(role);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +111,9 @@ namespace smaaahh_api.Controllers
             base.Dispose(disposing);
         }
 
-        private bool RideRequestExists(int id)
+        private bool RoleExists(int id)
         {
-            return db.RideRequests.Count(e => e.RideRequestID == id) > 0;
+            return db.Roles.Count(e => e.RoleId == id) > 0;
         }
     }
 }

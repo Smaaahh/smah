@@ -11,6 +11,7 @@ using System.Web.Http.Description;
 using smaaahh_dao;
 using System.Drawing;
 using System.Web.Http.Cors;
+using smaaahh_api.Models;
 
 namespace smaaahh_api.Controllers
 {
@@ -20,18 +21,17 @@ namespace smaaahh_api.Controllers
         private Db db = new Db();
 
         // GET: api/Drivers
-        [HttpGet]
         public IQueryable<Driver> GetDrivers()
         {
             return db.Drivers;
         }
         
         [Route("api/Drivers/Free")]
-        [HttpGet]
         public IQueryable<Driver> GetDriversFree()
         {
             return db.Drivers.Where(f =>f.Free == true && f.Active == true && f.State == Driver.DriverState.Enabled);
         }
+       
         // GET: api/Drivers/5
         [ResponseType(typeof(Driver))]
         public IHttpActionResult GetDriver(int id)
@@ -46,7 +46,7 @@ namespace smaaahh_api.Controllers
         }
 
         // PUT: api/Drivers/5
-        [HttpGet]
+        
         [ResponseType(typeof(void))]
         public IHttpActionResult PutDriver(int id, Driver driver)
         {
@@ -55,7 +55,7 @@ namespace smaaahh_api.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != driver.DriverId)
+            if (id != driver.UserId)
             {
                 return BadRequest();
             }
@@ -89,11 +89,19 @@ namespace smaaahh_api.Controllers
             {
                 return BadRequest(ModelState);
             }
+            bool Error = Users.verifEmail(driver.Email);
 
-            db.Drivers.Add(driver);
-            db.SaveChanges();
+            if ( !Error)
+            {
+                db.Drivers.Add(driver);
+                db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = driver.DriverId }, driver);
+                return CreatedAtRoute("DefaultApi", new { id = driver.UserId }, driver);
+            }
+            else
+            {
+                return BadRequest("Cette adresse mail est déjà utilisée");
+            }
         }
 
         // DELETE: api/Drivers/5
@@ -105,8 +113,8 @@ namespace smaaahh_api.Controllers
             {
                 return NotFound();
             }
-
-            db.Drivers.Remove(driver);
+            driver.State = Driver.DriverState.Disabled;
+            db.Entry(driver).Property("State").IsModified = true;
             db.SaveChanges();
 
             return Ok(driver);
@@ -123,7 +131,7 @@ namespace smaaahh_api.Controllers
 
         private bool DriverExists(int id)
         {
-            return db.Drivers.Count(e => e.DriverId == id) > 0;
+            return db.Drivers.Count(e => e.UserId == id) > 0;
         }
         
     }
