@@ -147,9 +147,6 @@ body {
     border-radius: 5px;
     border-color: #000;
 }
-#map {
-    height: 300px;
-}
 
 #Map {
     /*background: #874c1a;*/
@@ -335,4 +332,28 @@ table {
 .Ttop {
     height: auto;
     width: 360px;
+}
+
+.home-map {
+    height: 300px;
+}
+
+.big-map{
+    height:500px;
+}
+/* Recherche */
+.big-search {
+    position: relative;
+}
+.box-search {
+    position: absolute;
+    top: 100px;
+}
+.entete-search {
+    padding: 5px 10px;
+    text-align: center;
+    background-color: gray;
+    color: white;
+    border: 1px solid black;
+    border-radius: 10px;
 }

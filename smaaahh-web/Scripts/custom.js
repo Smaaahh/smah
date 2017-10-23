@@ -1,5 +1,32 @@
 ﻿var map;
+var markers = [];
+
+var iconPerson;
+var iconVoiture;
+
+var infowindow;
+
+var listeDriverFree;
+
 function initMap() {
+    iconPerson = {
+        url: "../content/images/map-marker64.png",
+        // This marker is 20 pixels wide by 32 pixels high.
+        size: new google.maps.Size(64, 64),
+        // The origin for this image is (0, 0).
+        origin: new google.maps.Point(0, 0),
+        // The anchor for this image is the base of the flagpole at (0, 32).
+        anchor: new google.maps.Point(32, 64)
+    };
+    iconVoiture = {
+        url: "../content/images/car2.png",
+        // This marker is 20 pixels wide by 32 pixels high.
+        size: new google.maps.Size(32, 20),
+        // The origin for this image is (0, 0).
+        origin: new google.maps.Point(0, 0),
+        // The anchor for this image is the base of the flagpole at (0, 32).
+        anchor: new google.maps.Point(16, 20)
+    };
     var styler = [
         {
             "featureType": "road.highway.controlled_access",
@@ -23,6 +50,7 @@ function initMap() {
             ]
         }
     ];
+    infowindow = new google.maps.InfoWindow();
 
     var uluru = { lat: 48.864716, lng: 2.349014 };
     map = new google.maps.Map(document.getElementById('map'), {
@@ -30,17 +58,57 @@ function initMap() {
         center: uluru,
         styles: styler
     });
+    
+    var input = document.getElementById('pac-input');
+    if (input != undefined) {
 
-    var listeDriverFree;
-    var iconVoiture = {
-        url: "../content/images/car2.png",
-        // This marker is 20 pixels wide by 32 pixels high.
-        size: new google.maps.Size(32, 20),
-        // The origin for this image is (0, 0).
-        origin: new google.maps.Point(0, 0),
-        // The anchor for this image is the base of the flagpole at (0, 32).
-        anchor: new google.maps.Point(16, 20)
-    };
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function () {
+            searchBox.setBounds(map.getBounds());
+        });
+
+        
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function () {
+            var places = searchBox.getPlaces();
+
+            if (places.length == 0) {
+                return;
+            }
+
+            // Clear out the old markers.
+            markers.forEach(function (marker) {
+                marker.setMap(null);
+            });
+            markers = [];
+
+            // For each place, get the icon, name and location.
+            var bounds = new google.maps.LatLngBounds();
+            places.forEach(function (place) {
+                
+                if (!place.geometry) {
+                    console.log("Returned place contains no geometry");
+                    return;
+                }
+                setMarker(iconPerson, place.name, place.geometry.location);
+                
+                if (place.geometry.viewport) {
+                    // Only geocodes have viewport.
+                    bounds.union(place.geometry.viewport);
+                } else {
+                    bounds.extend(place.geometry.location);
+                }
+            });
+            map.fitBounds(bounds);
+        });
+    }
+
+    
+    
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "/ajax/GetDriversFree", true);
     xhr.onreadystatechange = function () {
@@ -56,12 +124,20 @@ function initMap() {
                             lat: listeDriverFree[i].PosX,
                             lng: listeDriverFree[i].PosY
                         };
-                        
-                        marker = new google.maps.Marker({
+                        map.setCenter(pos);
+                        var marker = new google.maps.Marker({
                             position: pos,
                             map: map,
-                            icon: iconVoiture
+                            icon: iconVoiture,
+                            title: listeDriverFree[i].UserName,
+                            zIndex: i
                         });
+                        map.setZoom(10);
+                        google.maps.event.addListener(marker, 'click', function () {
+                            infowindow.setContent("Conducteur : " + listeDriverFree[this.zIndex].UserName + "<br>Note : " + listeDriverFree[this.zIndex].Rating);
+                            infowindow.open(map, this);
+                        });
+
                     }
                 }
             }
@@ -71,15 +147,7 @@ function initMap() {
     xhr.send();
 
     if (navigator.geolocation) {
-        var iconPerson = {
-            url: "../content/images/map-marker64.png",
-            // This marker is 20 pixels wide by 32 pixels high.
-            size: new google.maps.Size(64, 64),
-            // The origin for this image is (0, 0).
-            origin: new google.maps.Point(0,0),
-            // The anchor for this image is the base of the flagpole at (0, 32).
-            anchor: new google.maps.Point(32,64)
-        };
+        
         navigator.geolocation.getCurrentPosition(function (position) {
             var pos = {
                 lat: position.coords.latitude,
@@ -87,11 +155,7 @@ function initMap() {
             };
             
             map.setCenter(pos);
-            marker = new google.maps.Marker({
-                position: pos,
-                map: map,
-                icon: iconPerson
-            });
+            setMarker(iconPerson,"Point de départ", pos);
             map.setZoom(10);
         }, function () {
             handleLocationError(true, map.getCenter());
@@ -102,6 +166,17 @@ function initMap() {
     }
 }
 
+function setMarker(icon, title, pos) {
+    
+    map.setCenter(pos);
+    markers.push(new google.maps.Marker({
+        position: pos,
+        map: map,
+        icon: icon,
+        title: title
+    }));
+    map.setZoom(10);
+}
 function handleLocationError(browserHasGeolocation, pos) {
     console.log(browserHasGeolocation ?
         'Error: The Geolocation service failed.' :

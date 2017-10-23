@@ -11,6 +11,7 @@ using System.Web.Http.Description;
 using smaaahh_dao;
 using System.Drawing;
 using System.Web.Http.Cors;
+using smaaahh_api.Models;
 
 namespace smaaahh_api.Controllers
 {
@@ -30,7 +31,7 @@ namespace smaaahh_api.Controllers
         {
             return db.Drivers.Where(f =>f.Free == true && f.Active == true && f.State == Driver.DriverState.Enabled);
         }
-
+       
         // GET: api/Drivers/5
         [ResponseType(typeof(Driver))]
         public IHttpActionResult GetDriver(int id)
@@ -88,11 +89,19 @@ namespace smaaahh_api.Controllers
             {
                 return BadRequest(ModelState);
             }
+            bool Error = Users.verifEmail(driver.Email);
 
-            db.Drivers.Add(driver);
-            db.SaveChanges();
+            if ( !Error)
+            {
+                db.Drivers.Add(driver);
+                db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = driver.UserId }, driver);
+                return CreatedAtRoute("DefaultApi", new { id = driver.UserId }, driver);
+            }
+            else
+            {
+                return BadRequest("Cette adresse mail est déjà utilisée");
+            }
         }
 
         // DELETE: api/Drivers/5

@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using smaaahh_dao;
+using smaaahh_api.Models;
 
 namespace smaaahh_api.Controllers
 {
@@ -78,11 +79,19 @@ namespace smaaahh_api.Controllers
             {
                 return BadRequest(ModelState);
             }
+            bool Error = Users.verifEmail(admin.Email);
 
-            db.Admins.Add(admin);
-            db.SaveChanges();
+            if (!Error)
+            {
+                db.Admins.Add(admin);
+                db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = admin.UserId }, admin);
+                return CreatedAtRoute("DefaultApi", new { id = admin.UserId }, admin);
+            }
+            else
+            {
+                return BadRequest("Cette adresse mail est déjà utilisée");
+            }
         }
 
         // DELETE: api/Admins/5
