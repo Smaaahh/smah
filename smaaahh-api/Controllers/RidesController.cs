@@ -85,6 +85,40 @@ namespace smaaahh_api.Controllers
             return CreatedAtRoute("DefaultApi", new { id = ride.RideId }, ride);
         }
 
+        // POST: api/Rides
+        [HttpPost]
+        [Route("api/Rides/ConvertRideRequest")]
+        [ResponseType(typeof(Ride))]
+        public IHttpActionResult PostConvertRideRequest(RideRequest rideRequest, int DriverId, double nbKm)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            Params priceParam = new Params();
+            decimal price = priceParam.Price * (decimal)nbKm;
+            Ride ride = new Ride()
+            {
+                RiderId = rideRequest.RiderId,
+                DriverId = DriverId,
+                PosXStart = rideRequest.PosXStart,
+                PosXEnd = rideRequest.PosXEnd,
+                PosYEnd = rideRequest.PosYEnd,
+                PosYStart = rideRequest.PosYStart,
+                PlaceNumber = rideRequest.PlaceNumber,
+                DateCreation = DateTime.Now,
+                DateStart = null,
+                DateEnd = null,
+                Price = price,
+                Payment = null,
+                PromotionCodeId = null
+            };
+            db.Rides.Add(ride);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = ride.RideId }, ride);
+        }
+
         // DELETE: api/Rides/5
         [ResponseType(typeof(Ride))]
         public IHttpActionResult DeleteRide(int id)

@@ -23,10 +23,10 @@ namespace smaaahh_web
 
         public int PlaceNumber { get; set; }
         public DateTime DateCreation { get; set; }
-        public DateTime DateStart { get; set; }
-        public DateTime DateEnd { get; set; }
+        public DateTime? DateStart { get; set; }
+        public DateTime? DateEnd { get; set; }
 
-        public PaymentType Payment { get; set; }
+        public PaymentType? Payment { get; set; }
 
         public decimal Price { get; set; }
         

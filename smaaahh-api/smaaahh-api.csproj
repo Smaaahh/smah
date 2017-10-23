@@ -210,7 +210,9 @@
     <Compile Include="Controllers\RideRequestsController.cs" />
     <Compile Include="Controllers\RidesController.cs" />
     <Compile Include="Controllers\RidersController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Filters\AdminFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
