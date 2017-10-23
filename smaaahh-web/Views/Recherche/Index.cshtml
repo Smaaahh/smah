@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Recherche";
+}
+<div class="big-search">
+    <div id="map" class="big-map"></div>
+
+    <div class="box-search">
+        <div class="entete-search">Booking</div>
+        <input id="pac-input" class="controls" type="text" placeholder="Enter a destination" onchange="calcRoute();">
+    </div>
+</div>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbefCpK80vGc6pN5VoWTIIaqcAp4dHMb8&libraries=places&callback=initMap"> </script>
