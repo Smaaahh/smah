@@ -43,7 +43,7 @@ namespace smaaahh_api.Controllers
 
         [TokenAuthenticate]
         [Route("api/Account")]
-        public string GetFind(String email, String type)
+        public IHttpActionResult GetFind(String email, String type)
         {
             User user = null;
             try
@@ -63,8 +63,8 @@ namespace smaaahh_api.Controllers
 
             }
 
-            var jsonSerialiser = new JavaScriptSerializer();
-            return jsonSerialiser.Serialize(user);
+            //var jsonSerialiser = new JavaScriptSerializer();
+            return Json(user);
         }
 
         protected override void Dispose(bool disposing)

@@ -17,16 +17,6 @@ namespace smaaahh_web.Controllers
             return View();
         }
 
-        public ActionResult DashBoardRider()
-        {
-            return View();
-        }
-
-        public ActionResult DashBoardDriver()
-        {
-            return View();
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(string email, string password)
@@ -64,7 +54,7 @@ namespace smaaahh_web.Controllers
 
                     loginUser(email, "rider");
 
-                    return RedirectToAction("DashBoardRider");
+                    return RedirectToAction("Dashboard", "Riders");
 
                 }
             }
@@ -82,9 +72,21 @@ namespace smaaahh_web.Controllers
                 Session["token"] = token;
 
                 loginUser(email, "driver");
-                return RedirectToAction("DashBoardDriver");
+                return RedirectToAction("Dashboard", "Drivers");
 
             }
+        }
+
+        public ActionResult Logout() {
+            if (Session["Type"].ToString() == "driver")
+            {
+                // qu'est-ce qu'il se passe s'il se déconnecte avant d'avoir terminé sa course ????
+                // modifier les états
+                // mettre à jour le driver
+                MettreAJourEtatDriver(false, false);
+            }
+            Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
 
         public void loginUser(string email, string type)
@@ -106,10 +108,12 @@ namespace smaaahh_web.Controllers
                 
             }).Wait();
 
+            Session["Type"] = type;
             Session["UserID"] = user.UserId;
             Session["UserFirstName"] = user.FirstName;
             Session["UserLastName"] = user.LastName;
-            Session["UserPseudo"] = user.UserName;
+            Session["UserName"] = user.UserName;
+            Session["UserEmail"] = user.Email;
 
             // rideRequest : utilité de la mettre en session ? à voir plus tard
             //try
@@ -126,18 +130,24 @@ namespace smaaahh_web.Controllers
             // et son etat
             if (type=="driver")
             {
-                // TO DO !! :D
-                Driver driver = user as Driver;
-                driver.Active = true;
-                driver.Free = true;
-                Task.Run(async () =>
-                {
-                    await UpdateDriver(driver);
-                }).Wait();
+                MettreAJourEtatDriver(true, true);
             }
         }
 
-
+        public void MettreAJourEtatDriver(bool active, bool free)
+        {
+            Driver driver = null;
+            Task.Run(async () =>
+            {
+                driver = await GetDriver(Session["UserEmail"].ToString());
+            }).Wait();
+            driver.Active = active;
+            driver.Free = free;
+            Task.Run(async () =>
+            {
+                await UpdateDriver(driver);
+            }).Wait();
+        }
 
 
 
@@ -153,17 +163,17 @@ namespace smaaahh_web.Controllers
 
         public async Task<Rider> GetRider(string email)
         {
-            return await CallApi<Rider>($"api/Account/Get?email={email}&type=rider", true);
+            return await CallApi<Rider>($"api/Account/?email={email}&type=rider", true);
         }
 
         public async Task<Driver> GetDriver(string email)
         {
-            return await CallApi<Driver>($"api/Account/Get?email={email}&type=driver", true);
+            return await CallApi<Driver>($"api/Account/?email={email}&type=driver", true);
         }
 
         public async Task<bool> UpdateDriver(Driver driver)
         {
-            return await UpdateAPIItemAsync<Driver>($"api/Drivers/id={driver.UserId}", driver);
+            return await UpdateAPIItemAsync<Driver>($"api/Drivers/?id={driver.UserId}", driver);
 
         }
     }

@@ -26,7 +26,15 @@
                         <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
                         <li>@Html.ActionLink("À propos de", "About", "Home")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        @if (Session["UserId"] != null)
+                        {
+                            <li>@Html.ActionLink($"Bienvenue {Session["UserName"]}", "Dashboard", Session["Type"].ToString()+"s")</li>
+                            <li>@Html.ActionLink("Déconnexion", "Logout", "Users")</li>
+                        }
+                        else
+                        {
                         <li>@Html.ActionLink("Login", "Login", "Users")</li>
+                        }
                     </ul>
                 </div>
             </div>

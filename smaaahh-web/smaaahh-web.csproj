@@ -166,6 +166,7 @@
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\DriversController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RidersController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -253,8 +254,8 @@
     <Content Include="Views\Drivers\Create.cshtml" />
     <Content Include="Views\Riders\Create.cshtml" />
     <Content Include="Views\Users\Login.cshtml" />
-    <Content Include="Views\Users\DashBoardCustomer.cshtml" />
-    <Content Include="Views\Users\DashBoardDriver.cshtml" />
+    <Content Include="Views\Drivers\Dashboard.cshtml" />
+    <Content Include="Views\Riders\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

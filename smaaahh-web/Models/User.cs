@@ -22,6 +22,9 @@ namespace smaaahh_web
         public string ImgProfil { get; set; }
         public string UserName { get; set; }
 
+
+
+
         public User()
         {
 

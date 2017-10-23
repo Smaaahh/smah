@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace smaaahh_web.Controllers
 {
-    public class DriversController : Controller
+    public class RidersController : Controller
     {
-        // GET: Drivers
-        public ActionResult Create()
+        // GET: Riders
+        public ActionResult Index()
         {
             return View();
         }
