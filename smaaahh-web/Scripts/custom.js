@@ -188,7 +188,7 @@ function setMarker(icon, title, pos) {
 
 
 function calcRoute() {
-    var start = document.getElementById('depart-input').value;
+    //var start = document.getElementById('depart-input').value;
     var end = document.getElementById('pac-input').value;
     var request = {
         origin: posDeparture,
