@@ -12,8 +12,10 @@ namespace smaaahh_web
     { 
         public int RideId { get; set; }
 
+        public int RiderId { get; set; }
         public Rider Rider { get; set; }
-        
+
+        public int DriverId { get; set; }
         public Driver Driver { get; set; }
 
         public decimal PosXStart { get; set; }
@@ -29,7 +31,8 @@ namespace smaaahh_web
         public PaymentType? Payment { get; set; }
 
         public decimal Price { get; set; }
-        
+
+        public int? PromotionCodeId { get; set; }
         public PromotionCode PromotionCode { get; set; }
         
         public Ride()

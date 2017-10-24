@@ -377,4 +377,7 @@ table {
     text-overflow: ellipsis;
     width: 200px;
 }
+#window-driver{
+    display:none;
+}
 

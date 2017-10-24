@@ -7,7 +7,26 @@
 
     <div class="box-search">
         <div class="entete-search">Booking</div>
-        <input id="pac-input" class="controls" type="text" placeholder="Enter a destination" onchange="calcRoute();">
+        <div>
+            <input id="from-input" class="controls" type="text" placeholder="Enter a depart" onchange="resetRoute()">
+        </div>
+        <div>
+            <input id="to-input" class="controls" type="text" placeholder="Enter a destination" onchange="resetRoute()">
+        </div>
+        <div>
+            <button class="validate-route btn-info">Valider</button>
+        </div>
+        <div>
+            <div id="divPrice">Valider</div>
+        </div>
     </div>
 </div>
+<div id="window-driver">
+    <input type="hidden" id="driver-id" />
+    <h4 id="driver-name"></h4>
+    <div id="driver-rate"></div>
+    <br /><button id="choose-driver">Choisir ce conducteur</button>
+
+</div>
+
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbefCpK80vGc6pN5VoWTIIaqcAp4dHMb8&libraries=places&callback=initMap"> </script>
