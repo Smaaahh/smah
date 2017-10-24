@@ -210,6 +210,7 @@
     <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\profils\default.jpg" />
     <Content Include="Content\images\smaaahhlogo5.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -261,7 +262,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\images\profils\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Api\" />
     <Folder Include="Views\Default\" />

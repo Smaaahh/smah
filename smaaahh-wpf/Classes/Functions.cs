@@ -51,7 +51,7 @@ namespace smaaahh_wpf
             response.EnsureSuccessStatusCode();
 
             // Deserialize the updated product from the response body.
-            item = await response.Content.ReadAsAsync<T>();
+            //item = await response.Content.ReadAsAsync<T>();
             return true;
         }
 
