@@ -75,5 +75,27 @@ namespace smaaahh_web.Controllers
             return false;
         }
 
+
+        // POST: Ajax
+        [HttpPost]
+        [Route("ajax/UpdateDriverPosition")]
+        public async Task<bool> UpdateDriverPosition(string latitude, string longitude)
+        {
+            // on va chercher le Driver
+            Driver driver = null;
+            // on convertit les coordonnées
+            var numberFormatInfo = new NumberFormatInfo { NumberDecimalSeparator = "." };
+            double posX = double.Parse(latitude, numberFormatInfo);
+
+            double posY = double.Parse(longitude, numberFormatInfo);
+            Task.Run(async () =>
+            {
+                driver = await GetDriver(Session["UserEmail"].ToString());
+            }).Wait();
+            // on met à jour les infos latitude et longitude
+            driver.PosX = posX;
+            driver.PosY = posY;
+            return await UpdateDriver(driver); 
+        }
     }
 }

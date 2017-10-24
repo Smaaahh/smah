@@ -263,6 +263,7 @@ function handleLocationError(browserHasGeolocation, pos) {
 }
 
 
+
 $(document).ready(function () {
     $(".validate-route").on("click", function () {
         calcRoute();

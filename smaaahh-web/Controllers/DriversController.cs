@@ -65,7 +65,7 @@ namespace smaaahh_web.Controllers
                         {
                             resultat = await CreateItem(car, "car");
                         }).Wait();
-                        //end pas sa
+                        
 
                         // on redirige vers la page de login
                         Session["Message"] = "Merci de vous être inscrit. Veuillez maintenant vous identifier.";
@@ -145,8 +145,7 @@ namespace smaaahh_web.Controllers
             }
             catch (Exception e)
             {
-                Session["Message"] = "L'image n'a pas pu être envoyée. Votre compte a été créé, veuillez vous identifier.";
-                //return RedirectToAction("Login", "Users");
+                // l'image n'est pas mise à jour
             }
             // mettre à jour le driver
             Task.Run(async () =>
