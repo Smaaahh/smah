@@ -35,6 +35,25 @@ namespace smaaahh_api.Controllers
             return Ok(car);
         }
 
+        // GET: api/UserCars/5
+        [ResponseType(typeof(Car))]
+        [Route("api/UserCars/{id}")]
+        public IHttpActionResult GetUserCar(int id)
+        {
+            Car car = null;
+            try
+            {
+                car = db.Cars.First(c => c.DriverId == id);
+            }
+            catch(Exception e)
+            { 
+                return NotFound();
+            }
+
+            return Ok(car);
+        }
+
+
         // PUT: api/Cars/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutCar(int id, Car car)

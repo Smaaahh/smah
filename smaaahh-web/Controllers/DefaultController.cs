@@ -87,13 +87,25 @@ namespace smaaahh_web.Controllers
         {
             return await CallApi<Driver>($"api/Account/?email={email}&type=driver", true);
         }
-        //
+        
+        public async Task<Car>GetCar(string UserId)
+        {
+            return await CallApi<Car>($"api/UserCars/{UserId}", true);
+        }
+
         public async Task<bool> UpdateDriver(Driver driver)
         {
             return await UpdateAPIItemAsync<Driver>($"api/Drivers/?id={driver.UserId}", driver);
 
         }
-        
+        //update Rider
+
+        public async Task<bool> UpdateCar(Car car)
+        {
+            return await UpdateAPIItemAsync<Car>($"api/Cars/?id={car.CarId}", car);
+
+        }
+
         public async Task<bool>UpdateRider(Rider rider)
         {
             return await UpdateAPIItemAsync<Rider>($"api/Riders/?id={rider.UserId}", rider);
