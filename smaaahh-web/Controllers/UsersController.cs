@@ -116,6 +116,7 @@ namespace smaaahh_web.Controllers
             Session["UserLastName"] = user.LastName;
             Session["UserName"] = user.UserName;
             Session["UserEmail"] = user.Email;
+            Session["ImgProfil"] = user.ImgProfil;
 
             // rideRequest : utilité de la mettre en session ? à voir plus tard
             //try

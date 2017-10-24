@@ -96,14 +96,11 @@ namespace smaaahh_web.Controllers
         public async Task<bool> UpdateDriver(Driver driver)
         {
             return await UpdateAPIItemAsync<Driver>($"api/Drivers/?id={driver.UserId}", driver);
-
         }
-        //update Rider
 
         public async Task<bool> UpdateCar(Car car)
         {
             return await UpdateAPIItemAsync<Car>($"api/Cars/?id={car.CarId}", car);
-
         }
 
         public async Task<bool>UpdateRider(Rider rider)

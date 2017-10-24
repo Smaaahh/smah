@@ -28,6 +28,7 @@
                         {
                             <li>@Html.ActionLink($"Bienvenue {Session["UserName"]}", "Dashboard", Session["Type"].ToString()+"s")</li>
                             <li>@Html.ActionLink("Déconnexion", "Logout", "Users")</li>
+                            <li><img src='@Session["ImgProfil"]' /></li>
                         }
                         else
                         {

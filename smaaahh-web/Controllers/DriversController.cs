@@ -131,7 +131,7 @@ namespace smaaahh_web.Controllers
                         fileName = fileName.Replace(c, '_');
                     }
                     // supprimer l'ancienne image
-                    
+                    System.IO.File.Delete(driver.ImgProfil);
                     //*****
                     string path = Path.Combine(Server.MapPath("/content/images/profils"), fileName + Path.GetExtension(File.FileName));
                     File.SaveAs(path);
