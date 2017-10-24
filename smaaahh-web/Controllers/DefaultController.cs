@@ -94,6 +94,10 @@ namespace smaaahh_web.Controllers
 
         }
         
+        public async Task<bool>UpdateRider(Rider rider)
+        {
+            return await UpdateAPIItemAsync<Rider>($"api/Riders/?id={rider.UserId}", rider);
+        }
 
         public async Task<T> CreateItem<T>(T item, string type)
         {
