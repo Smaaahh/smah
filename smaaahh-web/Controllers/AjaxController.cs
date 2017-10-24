@@ -33,15 +33,15 @@ namespace smaaahh_web.Controllers
             {
                 try
                 {
-                    decimal getPrice100km = 200;
+                    decimal getPrice100km = await CallApi<decimal>($"api/Params", false);
                     var numberFormatInfo = new NumberFormatInfo { NumberDecimalSeparator = "." };
-                    decimal posXStartM = decimal.Parse(posXStart, numberFormatInfo);
+                    double posXStartM = double.Parse(posXStart, numberFormatInfo);
 
-                    decimal posYStartM = decimal.Parse(posYStart, numberFormatInfo);
+                    double posYStartM = double.Parse(posYStart, numberFormatInfo);
 
-                    decimal posXEndM = decimal.Parse(posXEnd, numberFormatInfo);
+                    double posXEndM = double.Parse(posXEnd, numberFormatInfo);
 
-                    decimal posYEndM = decimal.Parse(posYEnd, numberFormatInfo);
+                    double posYEndM = double.Parse(posYEnd, numberFormatInfo);
 
                     decimal nbKmM = decimal.Parse(nbKm, numberFormatInfo);
 

@@ -28,9 +28,6 @@ namespace smaaahh_dao
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity <Ride> ()
-            //.HasForeignKey(f => f.DriverRating)
-            //.WillCascadeOnDelete(false);
         }
     }
 }

@@ -283,10 +283,10 @@ $(document).ready(function () {
                 "nbKm": (directionsDisplay.directions.routes[0].legs[0].distance.value / 1000)
             },
             success: function (response, statut) {
-                alert(response);
+                alert("Youhou : "+ response);
             },
             error: function (response, statut, erreur) {
-
+                console.log(response);
             }
         });
     });

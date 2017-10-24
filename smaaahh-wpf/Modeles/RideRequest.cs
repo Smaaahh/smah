@@ -13,10 +13,10 @@ namespace smaaahh_wpf.Modeles
         public virtual Rider Rider { get; set; }
         public int RiderId { get; set; }
 
-        public decimal PosXStart { get; set; }
-        public decimal PosYStart { get; set; }
-        public decimal PosXEnd { get; set; }
-        public decimal PosYEnd { get; set; }
+        public double PosXStart { get; set; }
+        public double PosYStart { get; set; }
+        public double PosXEnd { get; set; }
+        public double PosYEnd { get; set; }
 
         public int PlaceNumber { get; set; }
         public DateTime DateCreation { get; set; }
