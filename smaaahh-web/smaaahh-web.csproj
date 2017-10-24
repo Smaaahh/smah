@@ -352,6 +352,7 @@
     <Content Include="Views\Recherche\Index.cshtml" />
     <Content Include="Views\Drivers\Update.cshtml" />
     <Content Include="Views\Drivers\Viewtest.cshtml" />
+    <Content Include="Views\Riders\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
