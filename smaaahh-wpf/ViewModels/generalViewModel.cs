@@ -18,13 +18,14 @@ namespace smaaahh_wpf.ViewModels
         #region constructeur
         public generalViewModel()
         {
+            // initialiser les données du ViewModel
             mesDrivers = new ObservableCollection<Driver>(AdminFunctions.GetDrivers());
             mesRiders = new ObservableCollection<Rider>(AdminFunctions.GetRiders());
             MaCmdeModifParams = new GalaSoft.MvvmLight.Command.RelayCommand(ModifierParams);
 
-            //_updateDriverCommand = new RelayCommand<Driver>(ExecuteDoSomethingWithDriverItem);
 
-            //this.ExpanderCommand = new RelayCommand(this.ExecuteExpanderCommand);
+            parametres = AdminFunctions.GetParams();
+            parametres = (parametres == null) ? new Params() :parametres;
         }
 
 
@@ -139,13 +140,24 @@ namespace smaaahh_wpf.ViewModels
                 RaisePropertyChanged("Parametres");
             }
         }
+
+        public decimal Price
+        {
+            get => parametres.Price;
+            set
+            {
+                parametres.Price = value;
+                RaisePropertyChanged("Price");
+            }
+        }
+
         public ICommand MaCmdeModifParams { get; }
 
         public void ModifierParams()
         {
-            var prix = parametres.Price;
+            //var prix = Parameters.Price;
             // acces à l'API
-            //AdminFunctions.UpdateParams(Price);
+            parametres = AdminFunctions.UpdateParams(Parameters);
         }
         #endregion
     }
