@@ -8,7 +8,6 @@ namespace smaaahh_wpf.Modeles
 {
     public class Driver : User
     {
-        public int DriverId { get; set; }
         public double Rating { get; set; }
         public double PosX { get; set; }
         public double PosY { get; set; }

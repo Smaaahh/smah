@@ -59,6 +59,46 @@ namespace smaaahh_wpf.Classes
             return listRiders;
         }
 
+        public static Params UpdateParams(Params parameters)
+        {
+            Params result = null;
+            Task.Run(async () =>
+            {
+                result = await UpdateParamsAPI(parameters);
+            }).Wait();
+
+            return result;
+        }
+        public static Params GetParams()
+        {
+            Params result = null;
+            Task.Run(async () =>
+            {
+                result = await GetParamsAPI();
+            }).Wait();
+
+            return result;
+        }
+
+        public async static Task<Params> GetParamsAPI()
+        {
+            return await CallApi<Params>($"api/Params");
+        }
+        public async static Task<Params> UpdateParamsAPI(Params parameters)
+        {
+            if (parameters.ParamsId == 0)
+            {
+                // signifie que la table params est vide, il faut la créer
+                return await CreateAPIItemAsync<Params>($"api/Params", parameters);
+                
+            }
+            else
+            {
+                await UpdateAPIItemAsync<Params>($"api/Params/?id={parameters.ParamsId}", parameters);
+                return parameters;
+            }
+        }
+
         public async static Task<List<Rider>> GetRidersAPI()
         {
             return await CallApi<List<Rider>>($"api/Riders");

@@ -24,7 +24,7 @@ body {
 #Head {
     /*background: #ff006e;*/
     height: 100px;
-    width: 990px;
+    width: 1200px;
     margin: auto;
 }
 
@@ -82,7 +82,7 @@ body {
 }
 
 #WrapFooter {
-    background: rgb(86, 19, 138 );
+    background: rgba(86, 19, 138, 0.82);
     height: 201px;
     width: 100%;
 }
@@ -90,7 +90,7 @@ body {
 #Footer {
     /*background: #ff00dc;*/
     height: 200px;
-    width: 990px;
+    width: 1200px;
     margin: auto;
 }
 /***********structure**end********************/
@@ -110,10 +110,15 @@ body {
 }
 
 #WrapMap {
-    background: rgba(224, 224, 224, 0.86);
+    background: #ff6a00;
     height: 450px;
     width: 990px;
     padding: 20px;
+}
+
+#map {
+    height: 350px;
+    width: 990px;
 }
 
 #SearchBox {
@@ -157,8 +162,9 @@ body {
 
 #ContentText {
     /*background: #b6ff00;*/
-    height: 400px;
+    height: 350px;
     width: 990px;
+    margin-top:15px;
 }
 
     #ContentText h3 {

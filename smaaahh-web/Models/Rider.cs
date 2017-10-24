@@ -27,7 +27,12 @@ namespace smaaahh_web
 
         }
         
-
+        public Rider(string Nom, string Prenom, string Pseudo, string Email, string Password, string NTelephone, string Image) : base(Nom, Prenom, Pseudo, Email, Password, NTelephone, Image)
+        {
+            Rating = 0;
+            PosX = 0;
+            PosY = 0;
+        }
 
     }
 }

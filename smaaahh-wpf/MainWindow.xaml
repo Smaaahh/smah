@@ -27,13 +27,16 @@
     </Window.Resources>
     <Grid>
         <TabControl HorizontalAlignment="Left" Height="749" Margin="10,10,0,0" VerticalAlignment="Top" Width="1172">
-            <TabItem Header="Statistiques">
-                <Grid Background="#FFE5E5E5" Margin="0,0,28,5"/>
-            </TabItem>
             <TabItem Header="Liste des Chauffeurs">
                 <Grid Background="#FFE5E5E5" >
-                   
+
                     <DataGrid x:Name="listDrivers" AutoGenerateColumns="false" ItemsSource="{Binding MesDrivers}" Margin="0,0,0,43" CanUserDeleteRows="False" CanUserAddRows="False" IsManipulationEnabled="True" >
+                        <DataGrid.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                <GradientStop Color="#3FEC07F7" Offset="1"/>
+                                <GradientStop Color="White"/>
+                            </LinearGradientBrush>
+                        </DataGrid.Background>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="RowEditEnding">
                                 <i:InvokeCommandAction Command="{Binding UpdateDriverCommand}" 
@@ -42,44 +45,92 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Nom" Binding="{Binding LastName}" SortDirection="Ascending" />
-                            <DataGridTextColumn Header="Prénom" Binding="{Binding FirstName}" SortDirection="Ascending" />
-                            <DataGridTextColumn Header="Pseudo" Binding="{Binding UserName}" SortDirection="Ascending"/>
-                            <DataGridTextColumn Header="Email" Binding="{Binding Email}" SortDirection="Ascending"/>
-                            <DataGridTextColumn Header="Téléphone" Binding="{Binding Phone}" SortDirection="Ascending"/>
-                            <DataGridComboBoxColumn Header="Etat"  SelectedItemBinding="{Binding State}" ItemsSource="{Binding Source={StaticResource myDriverEnum}}" SortDirection="Ascending" />
+                            <DataGridTextColumn Header="Nom" Binding="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" SortDirection="Ascending" />
+                            <DataGridTextColumn Header="Prénom" Binding="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" SortDirection="Ascending" />
+                            <DataGridTextColumn Header="Pseudo" Binding="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" SortDirection="Ascending"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding Email, UpdateSourceTrigger=PropertyChanged}" SortDirection="Ascending"/>
+                            <DataGridTextColumn Header="Téléphone" Binding="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" SortDirection="Ascending"/>
+                            <DataGridComboBoxColumn Header="Etat"  SelectedItemBinding="{Binding State, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Source={StaticResource myDriverEnum}}" SortDirection="Ascending" />
                         </DataGrid.Columns>
                     </DataGrid>
 
                 </Grid>
             </TabItem>
             <TabItem Header="Liste des Clients">
-                <Grid Background="#FFE5E5E5" >
+                <Grid  >
+                    
                     <DataGrid x:Name="listRiders" AutoGenerateColumns="false" ItemsSource="{Binding MesRiders}" Margin="0,0,0,43" CanUserDeleteRows="False" CanUserAddRows="False" IsManipulationEnabled="True"  >
+                        <DataGrid.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                <GradientStop Color="#3FEC07F7" Offset="1"/>
+                                <GradientStop Color="White"/>
+                            </LinearGradientBrush>
+                        </DataGrid.Background>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="RowEditEnding">
-                                <i:InvokeCommandAction Command="{Binding updateRider}" 
+                                <i:InvokeCommandAction Command="{Binding UpdateRiderCommand}" 
                                  CommandParameter="{Binding SelectedItem, 
-                                                   ElementName=ItemsList}" />
+                                                   ElementName=listRiders}" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Nom" Binding="{Binding LastName}" SortDirection="Ascending" />
-                            <DataGridTextColumn Header="Prénom" Binding="{Binding FirstName}" SortDirection="Ascending" />
-                            <DataGridTextColumn Header="Pseudo" Binding="{Binding UserName}" SortDirection="Ascending"/>
-                            <DataGridTextColumn Header="Email" Binding="{Binding Email}" SortDirection="Ascending"/>
-                            <DataGridTextColumn Header="Téléphone" Binding="{Binding Phone}" SortDirection="Ascending"/>
-                            <DataGridComboBoxColumn Header="Etat"  SelectedItemBinding="{Binding State}" ItemsSource="{Binding Source={StaticResource myRiderEnum}}" SortDirection="Ascending" />
+                            <DataGridTextColumn Header="Nom" Binding="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" SortDirection="Ascending" />
+                            <DataGridTextColumn Header="Prénom" Binding="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" SortDirection="Ascending" />
+                            <DataGridTextColumn Header="Pseudo" Binding="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" SortDirection="Ascending"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding Email, UpdateSourceTrigger=PropertyChanged}" SortDirection="Ascending"/>
+                            <DataGridTextColumn Header="Téléphone" Binding="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" SortDirection="Ascending"/>
+                            <DataGridComboBoxColumn Header="Etat"  SelectedItemBinding="{Binding State, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Source={StaticResource myRiderEnum}}" SortDirection="Ascending" />
                         </DataGrid.Columns>
                     </DataGrid>
 
                 </Grid>
             </TabItem>
             <TabItem Header="Modération des avis">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid >
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#3FEC07F7" Offset="1"/>
+                            <GradientStop Color="White"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                </Grid>
             </TabItem>
             <TabItem Header="Gestion des promotions">
-                <Grid Background="#FFE5E5E5" Margin="0,0,-267,-643"/>
+                <Grid  Margin="0,0,-267,-643">
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#3FEC07F7" Offset="1"/>
+                            <GradientStop Color="White"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Statistiques">
+                <Grid Margin="0,0,28,5">
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#3FEC07F7" Offset="1"/>
+                            <GradientStop Color="White"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Paramètres">
+                
+                <Grid Margin="0,0,28,5">
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#3FEC07F7" Offset="1"/>
+                            <GradientStop Color="White"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    
+                    <Label Content="Prix pour 100 km"  HorizontalAlignment="Left" Height="37" Margin="203,101,0,0" VerticalAlignment="Top" Width="216"/>
+                    <TextBox Text="{Binding Price, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="378,101,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+                    <Button Command="{Binding MaCmdeModifParams}" Content="Valider" HorizontalAlignment="Left" Height="37" Margin="632,101,0,0" VerticalAlignment="Top" Width="179"/>
+
+                </Grid>
             </TabItem>
         </TabControl>
 

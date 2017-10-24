@@ -17,9 +17,21 @@ namespace smaaahh_api.Controllers
         private Db db = new Db();
 
         // GET: api/Params
-        public IQueryable<Params> GetParams()
+        [ResponseType(typeof(Params))]
+        public IHttpActionResult GetParams()
         {
-            return db.Params;
+            Params @params = null;
+            try
+            {
+                @params = db.Params.First();
+            }
+            catch(Exception e)
+            {  }
+            if (@params==null)
+            {
+                return null;
+            }
+            return Ok(@params);
         }
 
         // GET: api/Params/5

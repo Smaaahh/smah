@@ -5,7 +5,7 @@
 
 <h2>Create Rider</h2>
 <div class="info">@ViewBag.Message</div>
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Riders", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -29,16 +29,16 @@
             </tr>
             <tr>
                 <td>@Html.Label("E-mail", htmlAttributes: new { @class = "" })</td>
-                <td>@Html.Editor("E-mail", new { htmlAttributes = new { @class = "form-control " } })</td>
+                <td>@Html.Editor("Email", new { htmlAttributes = new { @class = "form-control " } })</td>
             </tr>
             <tr>
                 <td>@Html.Label("Mot de Passe", htmlAttributes: new { @class = "" })</td>
-                <td>@Html.Editor("Mot de Passe", new { htmlAttributes = new { @class = "form-control " } })</td>
+                <td>@Html.Editor("Password", new { htmlAttributes = new { @class = "form-control " } })</td>
 
             </tr>
             <tr>
                 <td>@Html.Label("N° Téléphone", htmlAttributes: new { @class = " " })</td>
-                <td>@Html.Editor("N° Téléphone", new { htmlAttributes = new { @class = "form-control" } })</td>
+                <td>@Html.Editor("NTelephone", new { htmlAttributes = new { @class = "form-control" } })</td>
             </tr>
             <tr>
                 <td>@Html.Label("Image", htmlAttributes: new { @class = "" })</td>

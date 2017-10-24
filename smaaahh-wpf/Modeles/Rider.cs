@@ -8,7 +8,6 @@ namespace smaaahh_wpf.Modeles
 {
     public class Rider : User
     {
-        public int RiderId { get; set; }
         public double Rating { get; set; }
 
         public double PosX { get; set; }

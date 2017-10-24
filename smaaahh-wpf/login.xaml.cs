@@ -36,7 +36,7 @@ namespace smaaahh_wpf
             // récupère le login et password
             //Admin admin = verifLogin(); 
             string email = tEmail.Text;
-            string password = tPassword.Text;
+            string password = tPassword.Password;
             MessageBox.Show($"Email : {email} Password : {password}");
             string token = AdminFunctions.verifLogin(email, password, "admin");
             if (token == "Wrong access")

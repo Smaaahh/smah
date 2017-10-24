@@ -111,7 +111,7 @@ namespace smaaahh_web.Controllers
             }).Wait();
 
             Session["Type"] = type;
-            Session["UserID"] = user.UserId;
+            Session["UserId"] = user.UserId;
             Session["UserFirstName"] = user.FirstName;
             Session["UserLastName"] = user.LastName;
             Session["UserName"] = user.UserName;
