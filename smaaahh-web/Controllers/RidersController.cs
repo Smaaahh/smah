@@ -16,6 +16,7 @@ namespace smaaahh_web.Controllers
             return View();
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(string Nom, string Prenom, string Pseudo, string Email, string Password, string NTelephone, HttpPostedFileBase File)
