@@ -11,7 +11,10 @@
         <div id="MainStar">
             <div id="WrapNumNameRat">
                 <div class="NumNameRat">
-                    4.5
+                    @if (ViewBag.Type == "driver")
+                    {
+                        @ViewBag.Driver.Rating
+                    }
                 </div>
                 <div class="NumNameRat Name">
                     Name
