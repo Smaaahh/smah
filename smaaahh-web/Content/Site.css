@@ -131,22 +131,27 @@ body {
 }
 
 .txtBox[type=text]:focus, .txtBox:focus {
-    box-shadow: 0 0 5px #51cbee;
-    padding: 3px 0px 3px 3px;
-    margin: 5px 1px 3px 0px;
-    border: 1px solid #51cbee;
+    box-shadow: 0 0 5px rgba(86, 19, 138, 0.82);
+    /*padding: 3px 0px 3px 3px;*/
+    /*margin: 5px 1px 3px 0px;*/
+    border: 1px solid rgba(86, 19, 138, 0.82);
 }
 
 .txt {
-    height: 30px;
-    width: 177px;
-    font-size: 20px;
+    /*background: #000;*/
+    height: 40px;
+    width: 300px;
+    /*font-size: 20px;*/
     border-style: none;
     text-align: center;
     border-style: solid;
     border-width: 1px;
     border-radius: 5px;
     border-color: #000;
+}
+
+.txt2 {
+    height: 30px;
 }
 
 #Map {
@@ -189,6 +194,7 @@ table {
     background: #ffd800;
     height: 200px;
     width: 490px;
+    margin:auto;
 }
 
     table tr {
@@ -209,7 +215,9 @@ table {
     /*background: #aaa;*/
     height: auto;
     width: auto;
-    float:right;
+    float: right;
+    margin-bottom: 20px;
+    margin-right:80px;
 }
 
 /********dashboard***/
@@ -336,6 +344,36 @@ table {
     width: 360px;
 }
 
+/*login*/
+#TableLogin{
+    /*background: #ab1;*/
+    height: 478px;
+    width: 507px;
+    margin:auto;
+    margin-top:140px;
+}
+
+#LinkToRegister {
+    /*background: #ac6;*/
+    height: 20px;
+    width: 507px;
+    font-size:20px;
+}
+
+.Register {
+    background: #ac6;
+    height: 20px;
+    width: 507px;
+}
+
+#imgtax {
+    float: right;
+    height: 474px;
+}
+
+
+
+/*end login*/
 .home-map {
     height: 350px;
     width: 990px;
