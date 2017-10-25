@@ -90,7 +90,7 @@ namespace smaaahh_web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Update([Bind(Include = "Email,Phone,Password,FirstName,LastName,ImgProfil,UserName,")] Rider rider, HttpPostedFileBase File)
+        public ActionResult Update([Bind(Include = "Email,Phone,Password,FirstName,LastName,ImgProfil,UserName")] Rider rider, HttpPostedFileBase File)
         {
             rider.UserId = int.Parse(Session["UserId"].ToString());
             try
@@ -102,8 +102,9 @@ namespace smaaahh_web.Controllers
                     {
                         fileName = fileName.Replace(c, '_');
                     }
-                    // supprimer l'ancienne image
-                    System.IO.File.Delete(rider.ImgProfil);
+                    // supprimer l'ancienne image 
+                    // **** A FAIRE *****************
+                    //System.IO.File.Delete(rider.ImgProfil);
                     string path = Path.Combine(Server.MapPath("/content/images/profils"), fileName + Path.GetExtension(File.FileName));
                     File.SaveAs(path);
                     fileName = "/content/images/profils/" + fileName + Path.GetExtension(File.FileName);
