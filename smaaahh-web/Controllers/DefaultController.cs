@@ -83,6 +83,11 @@ namespace smaaahh_web.Controllers
             return await CallApi<Rider>($"api/Account/?email={email}&type=rider", true);
         }
 
+        public async Task<RideRequest> GetRideRequestByRider(int RiderId)
+        {
+            return await CallApi<RideRequest>($"api/RideRequest/RideRequestByRider/?id={RiderId}", true);
+        }
+
         public async Task<Driver> GetDriver(string email)
         {
             return await CallApi<Driver>($"api/Account/?email={email}&type=driver", true);

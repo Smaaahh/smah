@@ -13,10 +13,10 @@
 
         navigator.geolocation.getCurrentPosition(function (position) {
             var pos = {
-                lat: position.coords.latitude + Math.random(),
-                lng: position.coords.longitude + Math.random()
+                lat: position.coords.latitude + Math.random() - 0.5,
+                lng: position.coords.longitude + Math.random() - 0.5
             };
-            alert("Latitude : " + pos.lat + " Longitude : " + pos.lng);
+            //alert("Latitude : " + pos.lat + " Longitude : " + pos.lng);
             // mettre à jour dans l'api
             $.ajax({
                 url: '/ajax/UpdateDriverPosition',

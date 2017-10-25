@@ -22,6 +22,24 @@ namespace smaaahh_api.Controllers
             return Json(db.RideRequests.ToList());
         }
 
+        // GET: api/RideRequestsByRider/5
+        [Route("api/RideRequest/RideRequestByRider/")]
+        [ResponseType(typeof(RideRequest))]
+        public IHttpActionResult GetRideRequestByRider(int id)
+        {
+            RideRequest rideRequest = null;
+            try
+            {
+                rideRequest = db.RideRequests.First(r=>r.RiderId==id);
+            }
+            catch(Exception e)
+            {            
+                //return Ok(null);
+            }
+
+            return Ok(rideRequest);
+        }
+
         // GET: api/RideRequests/5
         [ResponseType(typeof(RideRequest))]
         public IHttpActionResult GetRideRequest(int id)

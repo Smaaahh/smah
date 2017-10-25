@@ -132,6 +132,18 @@ namespace smaaahh_web.Controllers
             return View();
         }
 
+        public ActionResult Payment()
+        {
+            // on va chercher la riderequest
+            RideRequest rideRequest = null;
+            Task.Run(async () =>
+            {
+                rideRequest = await GetRideRequestByRider(int.Parse(Session["UserId"].ToString()));
+            }).Wait();
+
+            return View(rideRequest);
+        }
+
     }
 
 }

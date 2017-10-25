@@ -15,7 +15,7 @@ namespace smaaahh_web.Controllers
         public ActionResult Login()
         {
             ViewBag.Message = Session["Message"];
-            Session["Message"]="";
+            Session["Message"] = "";
             return View();
         }
 
@@ -79,10 +79,12 @@ namespace smaaahh_web.Controllers
             }
         }
 
-        public ActionResult Logout() {
+        public ActionResult Logout()
+        {
             if (Session["Type"].ToString() == "driver")
             {
                 // qu'est-ce qu'il se passe s'il se déconnecte avant d'avoir terminé sa course ????
+                //****************************
                 // modifier les états
                 // mettre à jour le driver
                 MettreAJourEtatDriver(false, false);
@@ -107,7 +109,7 @@ namespace smaaahh_web.Controllers
                         user = await GetDriver(email);
                         break;
                 }
-                
+
             }).Wait();
 
             Session["Type"] = type;
@@ -118,20 +120,16 @@ namespace smaaahh_web.Controllers
             Session["UserEmail"] = user.Email;
             Session["ImgProfil"] = user.ImgProfil;
 
-            // rideRequest : utilité de la mettre en session ? à voir plus tard
-            //try
-            //{
-            //    Session["CartId"] = db.ShoppingCarts.First(l => l.User.UserId == user.UserId).ShoppingCartId;
-            //}
-            //catch (Exception e)
-            //{
-            //    Session["CartId"] = null;
-            //}
+            // mettre le RideRequest en session
+            Task.Run(async () =>
+            {
+                Session["RideRequestId"] = await GetRideRequestByRider(user.UserId);
+            }).Wait();
 
             // mettre à jour la position du driver
             // => sera fait lors de l'affichage du dashboard
             // et son etat
-            if (type=="driver")
+            if (type == "driver")
             {
                 MettreAJourEtatDriver(true, true);
             }
@@ -154,6 +152,6 @@ namespace smaaahh_web.Controllers
 
 
 
-        
+
     }
 }
