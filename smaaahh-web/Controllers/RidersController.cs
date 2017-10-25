@@ -1,4 +1,5 @@
-﻿using System;
+﻿using smaaahh_web.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -133,18 +134,37 @@ namespace smaaahh_web.Controllers
             return View();
         }
 
+        // construction de la view
         public ActionResult Payment()
         {
-            // on va chercher la riderequest
+            // on recupere la riderequest
             RideRequest rideRequest = null;
             Task.Run(async () =>
             {
-                rideRequest = await GetRideRequestByRider(int.Parse(Session["UserId"].ToString()));
+                rideRequest = await GetRideRequest(int.Parse(Session["RideRequestId"].ToString()));
             }).Wait();
-
-            return View(rideRequest);
+            Params parametres = null;
+            Task.Run(async () =>
+            {
+                parametres = await GetParams();
+            }).Wait();
+            // on construit une ride
+            Ride ride = new Ride(rideRequest, parametres.Price/100 );
+            return View(ride);
         }
 
+        // sauvegarde de la Ride
+        public ActionResult Payment([Bind()]Ride ride)
+        {
+
+            // sauvegarde de la ride
+            Task.Run(async () =>
+            {
+                 await CreateRide(ride);
+            }).Wait();
+            // redirection vers le dashboard
+            return RedirectToAction("DashBoard", "Riders");
+        }
     }
 
 }
