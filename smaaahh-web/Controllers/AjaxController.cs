@@ -56,8 +56,16 @@ namespace smaaahh_web.Controllers
                         DateCreation = DateTime.Now,
                         nbKm = nbKmM
                     };
-                    RideRequest rideRecup = await CreateAPIItemAsync<RideRequest>($"api/RideRequest", rideRequest);
-                    return true;
+                    RideRequest rideRecup = await CreateAPIItemAsync<RideRequest>($"api/RideRequests", rideRequest);
+                    if (rideRecup != null)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    
                 }
                 catch (Exception)
                 {
