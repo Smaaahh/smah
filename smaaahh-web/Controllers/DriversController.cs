@@ -91,8 +91,11 @@ namespace smaaahh_web.Controllers
         {
             return View();
         }
-        // update rider
 
+        public ActionResult Rating()
+        {
+            return View();
+        }
 
         public ActionResult Update()
         {

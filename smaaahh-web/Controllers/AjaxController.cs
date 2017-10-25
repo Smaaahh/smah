@@ -22,12 +22,22 @@ namespace smaaahh_web.Controllers
             return jsonSerialiser.Serialize(listeDriver);
         }
 
+        [HttpGet]
+        public async Task<string> GetPrice()
+        {
+            var jsonSerialiser = new JavaScriptSerializer();
+            Params param = await CallApi<Params>($"api/Params", false);
+
+            return jsonSerialiser.Serialize(param);
+        }
+
         [HttpPost]
         [Route("ajax/ChooseDriver")]
-        public async Task<bool> ChooseDriver(int driverId, string posXStart, string posYStart, string posXEnd, string posYEnd, string nbKm)
+        public async Task<string> ChooseDriver(int driverId, string posXStart, string posYStart, string posXEnd, string posYEnd, string nbKm)
         {
             int riderId;
-            int.TryParse(Session["UserID"].ToString(), out riderId);
+            int.TryParse(Session["UserId"].ToString(), out riderId);
+            var jsonSerialiser = new JavaScriptSerializer();
 
             if (riderId != 0)
             {
@@ -43,7 +53,8 @@ namespace smaaahh_web.Controllers
                     double posYEndM = double.Parse(posYEnd, numberFormatInfo);
 
                     decimal nbKmM = decimal.Parse(nbKm, numberFormatInfo);
-                    
+
+                    bool reussi = false;
                     RideRequest rideRequest = new RideRequest()
                     {
                         RiderId = riderId,
@@ -56,24 +67,31 @@ namespace smaaahh_web.Controllers
                         DateCreation = DateTime.Now,
                         nbKm = nbKmM
                     };
-                    RideRequest rideRecup = await CreateAPIItemAsync<RideRequest>($"api/RideRequests", rideRequest);
-                    if (rideRecup != null)
+
+                    if (Session["RideRequestId"] != null)
                     {
-                        return true;
+                        rideRequest.RideRequestID = int.Parse(Session["RideRequestId"].ToString());
+                        reussi = await UpdateAPIItemAsync<RideRequest>($"api/RideRequests/{rideRequest.RideRequestID}", rideRequest);
                     }
                     else
                     {
-                        return false;
+                        RideRequest rideRecup = await CreateAPIItemAsync<RideRequest>($"api/RideRequests", rideRequest);
+                        if (rideRecup != null)
+                        {
+                            reussi = true;
+                        }
+
                     }
-                    
+
+                    return jsonSerialiser.Serialize(reussi);
                 }
                 catch (Exception)
                 {
-                    return false;
+                    return jsonSerialiser.Serialize(false);
                 }
                 
             }
-            return false;
+            return jsonSerialiser.Serialize(false);
         }
 
 

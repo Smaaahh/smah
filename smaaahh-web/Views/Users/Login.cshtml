@@ -17,7 +17,7 @@
             @ViewBag.Message
         </div>
 
-        <div id="TableLoginRegister">
+        <div id="TableLogin">
             <table>
                 <tr>
                     <td>@Html.Label("E-mail", htmlAttributes: new { @class = "lbltext" })</td>
@@ -31,10 +31,10 @@
             <div class="sub">
                 <input type="submit" value="Valider" class="btn btn-default" />
             </div>
+
             <div id="LinkToRegister">
                 @Html.ActionLink("Créer un compte Passager", "Create", "Riders") / @Html.ActionLink("Créer un compte Conducteur", "Create", "Drivers")
             </div>
-
         </div>
 
 }
