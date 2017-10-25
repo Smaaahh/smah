@@ -31,6 +31,22 @@ namespace smaaahh_api.Controllers
             return Json(db.Ratings.ToList());
         }
 
+        [Route("api/TopRatingsByUser/{type}/{UserId}")]
+        public IHttpActionResult GetTopRatingsByUser(int UserId, string type)
+        {
+            IQueryable<Rating> ratings = null;
+
+            if (type == "driver")
+            {
+                ratings = db.Ratings.Where(t => t.Enabled == true && t.Ride.DriverId == UserId && t.RiderId != null && t.isTop == true);
+            }
+            if (type == "rider")
+            {
+                ratings = db.Ratings.Where(t => t.Enabled == true && t.Ride.RiderId == UserId && t.DriverId != null && t.isTop == true);
+            }
+
+            return Json(ratings.ToList());
+        }
 
         [Route("api/RatingsByUser/{type}/{UserId}")]
         public IHttpActionResult GetRatingsByUser(int UserId, string type)
@@ -104,6 +120,38 @@ namespace smaaahh_api.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
+            }
+
+            IQueryable<Rating> ratings = null;
+
+            if (rating.RiderId != null)
+            {
+                Driver d = db.Drivers.Find(db.Rides.Find(rating.RideId).DriverId);
+                ratings = db.Ratings.Where(t => t.Enabled == true && t.Ride.DriverId == d.UserId && t.RiderId != null);
+                if (ratings.Count() > 0)
+                {
+                    d.Rating = (ratings.Sum(r => r.Note) + rating.Note) / ratings.Count();
+                }
+                else
+                {
+                    d.Rating = rating.Note;
+                }
+                db.Entry(d).Property("Rating").IsModified = true;
+            }
+            if (rating.DriverId != null)
+            {
+                Rider ri = db.Riders.Find(db.Rides.Find(rating.RideId).RiderId);
+                ratings = db.Ratings.Where(t => t.Enabled == true && t.Ride.RiderId == ri.UserId && t.DriverId != null);
+                if (ratings.Count() > 0)
+                {
+                    ri.Rating = (ratings.Sum(r => r.Note) + rating.Note) / ratings.Count();
+                }
+                else
+                {
+                    ri.Rating = rating.Note;
+                }
+                
+                db.Entry(ri).Property("Rating").IsModified = true;
             }
 
             db.Ratings.Add(rating);

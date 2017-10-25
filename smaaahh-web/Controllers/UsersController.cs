@@ -158,29 +158,26 @@ namespace smaaahh_web.Controllers
             
             Task.Run(async () =>
             {
+                ViewBag.ListAvisTop = await CallApi<List<Rating>>($"api/TopRatingsByUser/{type}/{id}", false);
                 ViewBag.ListAvis = await CallApi<List<Rating>>($"api/RatingsByUser/{type}/{id}", false);
             }).Wait();
-            
+            User user = null;
             ViewBag.Type = type;
             if ( type == "driver")
             {
-                Driver driver = null;
                 Task.Run(async () =>
                 {
-                    driver = await CallApi<Driver>($"api/Drivers/{id}", false);
+                    user = await CallApi<Driver>($"api/Drivers/{id}", false);
                 }).Wait();
-                ViewBag.Driver = driver;
             }
             if (type == "rider")
             {
-                Rider rider = null;
                 Task.Run(async () =>
                 {
-                    rider = await CallApi<Rider>($"api/Riders/{id}", false);
+                    user = await CallApi<Rider>($"api/Riders/{id}", false);
                 }).Wait();
-                ViewBag.Rider = rider;
             }
-            
+            ViewBag.User = user;
             return View("Rating");
         }
         

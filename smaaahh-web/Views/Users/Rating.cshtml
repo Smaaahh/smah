@@ -3,7 +3,7 @@
     ViewBag.Title = "Rating";
 }
 
-<h2>Rating</h2>
+<h2>Profil</h2>
 <hr />
 
 <div id="WrapRating">
@@ -11,156 +11,89 @@
         <div id="MainStar">
             <div id="WrapNumNameRat">
                 <div class="NumNameRat">
-                    @if (ViewBag.Type == "driver")
-                    {
-                        @ViewBag.Driver.Rating
-                    }
+                    @ViewBag.User.Rating
                 </div>
                 <div class="NumNameRat Name">
-                    Name
+                    @ViewBag.User.UserName
                 </div>
             </div>
         </div>
         <div id="Stars">
-            <div class="Rating Rtop">
-                <div class="ImgRating">
-                    <img src="/Content/images/6945c96dc969f372bb79a1f8909305ad--handsome-black-men-delicious-chocolate.jpg" />
-                </div>
-                <div class="StarImg">
-                    <img src="~/Content/images/1457652300.png" />
-                    <img src="~/Content/images/1457652300.png" />
-                    <img src="~/Content/images/1457652300.png" />
-                    <img src="~/Content/images/1457652300.png" />
-                    <img src="~/Content/images/1457652300.png" />
-                    <img src="~/Content/images/1457652300.png" />
-                </div>
-                <div class="TextRating Ttop">
-                    <h4>Name</h4>
-                    Proinde concepta rabie saeviore, quam desperatio incendebat et fames,
-                    amplificatis viribus ardore incohibili in excidium urbium matris Seleuciae
-                </div>
-            </div>
-            <div class="Rating Rtop">
-                <div class="ImgRating">
-                    <img src="/Content/images/beauty-natural-make-up-model-backstage-920x518.jpg" />
-                </div>
-                <div class="StarImg">
-                    <img src="~/Content/images/1457652300.png" />
-                    <img src="~/Content/images/1457652300.png" />
-                    <img src="~/Content/images/1457652300.png" />
-                    <img src="~/Content/images/1457652300.png" />
-                    <img src="~/Content/images/1457652300.png" />
-                    <img src="~/Content/images/1457652300.png" />
-                </div>
+            @foreach (Rating r in ViewBag.ListAvis)
+            {
+                <div class="Rating Rtop">
+                    <div class="ImgRating">
+                        @if (ViewBag.Type == "rider")
+                        {
+                            <img src="@r.Driver.ImgProfil" />
+                        }
+                        else
+                        {
+                            <img src="@r.Rider.ImgProfil" />
+                        }
+                    </div>
+                    <div class="StarImg">
+                        @for (int i = 0; i < r.Note; i++)
+                        {
+                            <img src="~/Content/images/1457652300.png" />
+                        }
+                        @for (int i = r.Note; i <= 5; i++)
+                        {
+                        <img src="~/Content/images/greystar.png" />
+                        }
+                    </div>
+                    <div class="TextRating Ttop">
+                        @if (ViewBag.Type == "rider")
+                        {
+                            <h4>@r.Driver.UserName</h4>
 
-                <div class="TextRating Ttop">
-                    <h4>Name</h4>
-                    Proinde concepta rabie saeviore, quam desperatio incendebat et fames,
-                    amplificatis viribus ardore incohibili in excidium urbium matris Seleuciae
+                        }
+                        else
+                        {
+                            <h4>@r.Rider.UserName</h4>
+                        }
+                        @r.Message
+                    </div>
                 </div>
-            </div>
-            <div class="Rating Rtop">
-                <div class="ImgRating">
-                    <img src="/Content/images/smooth-tapered-fade.jpg" />
-                </div>
-                <div class="StarImg">
-                    <img src="~/Content/images/1457652300.png" />
-                    <img src="~/Content/images/1457652300.png" />
-                    <img src="~/Content/images/1457652300.png" />
-                    <img src="~/Content/images/1457652300.png" />
-                    <img src="~/Content/images/1457652300.png" />
-                    <img src="~/Content/images/1457652300.png" />
-                </div>
-
-                <div class="TextRating Ttop">
-                    <h4>Name</h4>
-                    Proinde concepta rabie saeviore, quam desperatio incendebat et fames,
-                    amplificatis viribus ardore incohibili in excidium urbium matris Seleuciae
-                </div>
-            </div>
+            }
         </div>
     </div>
     <div id="WRating">
+        @foreach (Rating r in ViewBag.ListAvis)
+        {
         <div class="Rating">
             <div class="ImgRating">
-                <img src="~/Content/images/6945c96dc969f372bb79a1f8909305ad--handsome-black-men-delicious-chocolate.jpg" />
+                @if (ViewBag.Type == "rider")
+                {
+                    <img src="@r.Driver.ImgProfil" />
+                }
+                else
+                {
+                    <img src="@r.Rider.ImgProfil" />
+                }
             </div>
             <div class="StarImg">
-                <img src="~/Content/images/1457652300.png" />
-                <img src="~/Content/images/1457652300.png" />
-                <img src="~/Content/images/1457652300.png" />
-                <img src="~/Content/images/1457652300.png" />
-                <img src="~/Content/images/1457652300.png" />
-                <img src="~/Content/images/1457652300.png" />
-            </div>
-
-            <div class="TextRating">
-                <h4>Name</h4>
-                Proinde concepta rabie saeviore, quam desperatio incendebat et fames,
-                amplificatis viribus ardore incohibili in excidium urbium matris Seleuciae
-                efferebantur, quam comes tuebatur Castricius tresque legiones bellicis
-                sudoribus induratae.
-
-            </div>
-        </div>
-        <div class="Rating">
-            <div class="ImgRating">
-                <img src="~/Content/images/beauty-natural-make-up-model-backstage-920x518.jpg" />
-            </div>
-            <div class="StarImg">
-                <img src="~/Content/images/1457652300.png" />
-                <img src="~/Content/images/1457652300.png" />
-                <img src="~/Content/images/1457652300.png" />
-                <img src="~/Content/images/1457652300.png" />
-                <img src="~/Content/images/1457652300.png" />
-                <img src="~/Content/images/1457652300.png" />
-            </div>
-
-            <div class="TextRating">
-                <h4>Name</h4>
-                Proinde concepta rabie saeviore, quam desperatio incendebat et fames, amplificatis viribus ardore incohibili in excidium urbium matris Seleuciae efferebantur, quam comes tuebatur Castricius tresque legiones bellicis sudoribus induratae.
-
-            </div>
-        </div>
-        <div class="Rating">
-            <div class="ImgRating">
-                <img src="~/Content/images/smooth-tapered-fade.jpg" />
-            </div>
-            <div class="StarImg">
-                <img src="~/Content/images/1457652300.png" />
-                <img src="~/Content/images/1457652300.png" />
-                <img src="~/Content/images/1457652300.png" />
-                <img src="~/Content/images/1457652300.png" />
-                <img src="~/Content/images/1457652300.png" />
-                <img src="~/Content/images/1457652300.png" />
+                @for (int i = 0; i < r.Note; i++)
+                {
+                    <img src="~/Content/images/1457652300.png" />
+                }
+                @for (int i = r.Note; i <= 5; i++)
+                {
+                    <img src="~/Content/images/greystar.png" />
+                }
             </div>
             <div class="TextRating">
-                <h4>Name</h4>
-                Proinde concepta rabie saeviore, quam desperatio incendebat et fames,
-                amplificatis viribus ardore incohibili in excidium urbium matris Seleuciae
-                efferebantur, quam comes tuebatur Castricius tresque legiones bellicis sudoribus induratae.
+                @if (ViewBag.Type == "rider")
+                {
+                    <h4>@r.Driver.UserName</h4>
+                }
+                else
+                {
+                    <h4>@r.Rider.UserName</h4>
+                }
+                @r.Message
             </div>
         </div>
-        <div class="Rating">
-            <div class="ImgRating">
-                <img src="~/Content/images/beauty-natural-make-up-model-backstage-920x518.jpg" />
-            </div>
-            <div class="StarImg">
-                <img src="~/Content/images/1457652300.png" />
-                <img src="~/Content/images/1457652300.png" />
-                <img src="~/Content/images/1457652300.png" />
-                <img src="~/Content/images/1457652300.png" />
-                <img src="~/Content/images/1457652300.png" />
-                <img src="~/Content/images/1457652300.png" />
-            </div>
-            <div class="TextRating">
-                <h4>Name</h4>
-                Proinde concepta rabie saeviore, quam desperatio incendebat et fames,
-                amplificatis viribus ardore incohibili in excidium urbium matris Seleuciae
-                efferebantur, quam comes tuebatur Castricius tresque legiones bellicis
-                sudoribus induratae.
-
-            </div>
-        </div>
+        }
     </div>
 </div>

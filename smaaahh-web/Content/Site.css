@@ -456,3 +456,6 @@ table {
 .validate-choice{
     display:none;
 }
+#window-driver #driver-name{
+    cursor:pointer;
+}
