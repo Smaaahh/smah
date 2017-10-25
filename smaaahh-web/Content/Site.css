@@ -453,4 +453,6 @@ table {
 #window-driver{
     display:none;
 }
-
+.validate-choice{
+    display:none;
+}

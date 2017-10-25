@@ -2,7 +2,7 @@
 var markerDepart, markerArrive;
 var markers = [];
 
-var listeDriverFree;
+var listeDriverFree, nbKm;
 
 function initMap() {
     directionsService = new google.maps.DirectionsService();
@@ -106,9 +106,13 @@ function initMap() {
                             document.getElementById('driver-id').value = listeDriverFree[this.zIndex].UserId;
                             var starsDriver = "";
                             for (i = 0; i < listeDriverFree[this.zIndex].Rating; i++) {
-                                starsDriver += '<img src="../">';
+                                starsDriver += '<img src="../content/images/plein.png">';
                             }
-                            document.getElementById('driver-rate').innerHTML = listeDriverFree[this.zIndex].Rating;
+                            for (i = listeDriverFree[this.zIndex].Rating; i < 5; i++) {
+                                starsDriver += '<img src="../content/images/vide.png">';
+                            }
+
+                            document.getElementById('driver-rate').innerHTML = starsDriver;//listeDriverFree[this.zIndex].Rating;
                             infowindow.setContent(document.getElementById('window-driver').innerHTML);//"Conducteur : " + listeDriverFree[this.zIndex].UserName + "<br>Note : " + listeDriverFree[this.zIndex].Rating);
                             infowindow.open(map, this);
                         });
@@ -185,7 +189,10 @@ function boxSearch(input,icon, type) {
                 console.log("Returned place contains no geometry");
                 return;
             }
-            
+            $(".validate-choice").hide();
+            $("#driver-id-choosen").val('');
+            $("#driver-name-choosen").html('');
+
             setMarker(icon, place.name, place.geometry.location, type);
 
             if (place.geometry.viewport) {
@@ -236,8 +243,8 @@ function resetRoute() {
 function calcRoute() {
 
     directionsDisplay.setMap(map);
-    var start = document.getElementById('from-input').value;
-    var end = document.getElementById('to-input').value;
+    var start = $('#from-input').val();
+    var end = $('#to-input').val();
 
     if (start == "Ma position") {
         start = posDeparture;
@@ -251,7 +258,24 @@ function calcRoute() {
     directionsService.route(request, function (result, status) {
         if (status == 'OK') {
             directionsDisplay.setDirections(result);
-            document.getElementById("divPrice").innerHTML = directionsDisplay.directions.routes[0].legs[0].distance.value/1000 + " Km";
+
+            nbKm = directionsDisplay.directions.routes[0].legs[0].distance.value / 1000;
+
+            $('#divNbKm').html(nbKm + " Km");
+            
+            $.ajax({
+                url: '/ajax/GetPrice',
+                type: 'GET',
+                dataType: 'json',
+                success: function (response, statut) {
+                    //alert("Youhou : " + response);
+                    var price = (response.Price / 100) * nbKm;
+                    $("#divPrice").html(price + " €");
+                },
+                error: function (response, statut, erreur) {
+                    console.log(response);
+                }
+            });
         }
     });
 }
@@ -270,21 +294,26 @@ $(document).ready(function () {
     });
 
     $("body").on("click","#choose-driver", function () {
-       
+        $(".validate-choice").show();
+        $("#driver-id-choosen").val($("#driver-id").val());
+        $("#driver-name-choosen").html($("#driver-name").html());
+    });
+
+    $(".validate-choice").on("click", function () {
         $.ajax({
             url: '/ajax/ChooseDriver',
             type: 'POST',
             dataType: 'json',
             data: {
-                "driverId": $("#driver-id").val(),
+                "driverId": $("#driver-id-choosen").val(),
                 "posXStart": (markerDepart.position.lat),
                 "posYStart": (markerDepart.position.lng),
                 "posXEnd": (markerArrive.position.lat),
                 "posYEnd": (markerArrive.position.lng),
-                "nbKm": (directionsDisplay.directions.routes[0].legs[0].distance.value / 1000)
+                "nbKm": (nbKm)
             },
             success: function (response, statut) {
-                alert("Youhou : "+ response);
+                window.location.replace("/riders/Payment");
             },
             error: function (response, statut, erreur) {
                 console.log(response);
