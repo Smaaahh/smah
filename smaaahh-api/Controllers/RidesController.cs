@@ -89,18 +89,18 @@ namespace smaaahh_api.Controllers
         [HttpPost]
         [Route("api/Rides/ConvertRideRequest")]
         [ResponseType(typeof(Ride))]
-        public IHttpActionResult PostConvertRideRequest(RideRequest rideRequest, int DriverId, double nbKm)
+        public IHttpActionResult PostConvertRideRequest(RideRequest rideRequest)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             Params priceParam = new Params();
-            decimal price = priceParam.Price * (decimal)nbKm;
+            decimal price = priceParam.Price * rideRequest.nbKm;
             Ride ride = new Ride()
             {
                 RiderId = rideRequest.RiderId,
-                DriverId = DriverId,
+                DriverId = rideRequest.DriverId,
                 PosXStart = rideRequest.PosXStart,
                 PosXEnd = rideRequest.PosXEnd,
                 PosYEnd = rideRequest.PosYEnd,

@@ -17,11 +17,16 @@ namespace smaaahh_dao
         public virtual Rider Rider { get; set; }
         public int RiderId { get; set; }
 
+        [ForeignKey("DriverId")]
+        public virtual Driver Driver { get; set; }
+        public int DriverId { get; set; }
+
         public double PosXStart { get; set; }
         public double PosYStart { get; set; }
         public double PosXEnd { get; set; }
         public double PosYEnd { get; set; }
 
+        public decimal nbKm { get; set; }
         public int PlaceNumber { get; set; }
         public DateTime DateCreation { get; set; }
 

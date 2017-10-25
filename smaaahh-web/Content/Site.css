@@ -116,10 +116,6 @@ body {
     padding: 20px;
 }
 
-#map {
-    height: 350px;
-    width: 990px;
-}
 
 #SearchBox {
     background: #fff;
@@ -341,7 +337,8 @@ table {
 }
 
 .home-map {
-    height: 300px;
+    height: 350px;
+    width: 990px;
 }
 
 .big-map{

@@ -33,7 +33,6 @@ namespace smaaahh_web.Controllers
             {
                 try
                 {
-                    decimal getPrice100km = await CallApi<decimal>($"api/Params", false);
                     var numberFormatInfo = new NumberFormatInfo { NumberDecimalSeparator = "." };
                     double posXStartM = double.Parse(posXStart, numberFormatInfo);
 
@@ -44,10 +43,8 @@ namespace smaaahh_web.Controllers
                     double posYEndM = double.Parse(posYEnd, numberFormatInfo);
 
                     decimal nbKmM = decimal.Parse(nbKm, numberFormatInfo);
-
-                    decimal price = nbKmM * (getPrice100km/100);
-
-                    Ride ride = new Ride()
+                    
+                    RideRequest rideRequest = new RideRequest()
                     {
                         RiderId = riderId,
                         DriverId = driverId,
@@ -57,13 +54,9 @@ namespace smaaahh_web.Controllers
                         PosYEnd = posYEndM,
                         PlaceNumber = 4,
                         DateCreation = DateTime.Now,
-                        DateStart = null,
-                        DateEnd = null,
-                        Payment = 0,
-                        Price = price,
-                        PromotionCodeId = null
+                        nbKm = nbKmM
                     };
-                    Ride rideRecup = await CreateAPIItemAsync<Ride>($"api/Rides", ride);
+                    RideRequest rideRecup = await CreateAPIItemAsync<RideRequest>($"api/RideRequest", rideRequest);
                     return true;
                 }
                 catch (Exception)
