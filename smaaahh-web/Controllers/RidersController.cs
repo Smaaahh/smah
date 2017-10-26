@@ -140,6 +140,10 @@ namespace smaaahh_web.Controllers
 
         public ActionResult Dashboard()
         {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Login", "Users");
+            }
             return View();
         }
 
