@@ -1,4 +1,5 @@
-﻿using System;
+﻿using smaaahh_web.Models;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -68,7 +69,7 @@ namespace smaaahh_web.Controllers
                         nbKm = nbKmM
                     };
 
-                    if (Session["RideRequestId"] != null)
+                    if (int.Parse(Session["RideRequestId"].ToString()) != 0)
                     {
                         rideRequest.RideRequestID = int.Parse(Session["RideRequestId"].ToString());
                         reussi = await UpdateAPIItemAsync<RideRequest>($"api/RideRequests/{rideRequest.RideRequestID}", rideRequest);
@@ -79,13 +80,13 @@ namespace smaaahh_web.Controllers
                         if (rideRecup != null)
                         {
                             reussi = true;
+                            Session["RideRequestId"] = rideRecup.RideRequestID;
                         }
-
                     }
 
                     return jsonSerialiser.Serialize(reussi);
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     return jsonSerialiser.Serialize(false);
                 }

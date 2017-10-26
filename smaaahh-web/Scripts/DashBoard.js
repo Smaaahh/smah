@@ -13,8 +13,8 @@
 
         navigator.geolocation.getCurrentPosition(function (position) {
             var pos = {
-                lat: position.coords.latitude + Math.random() - 0.5,
-                lng: position.coords.longitude + Math.random() - 0.5
+                lat: position.coords.latitude + (Math.random() - 0.5)/4,
+                lng: position.coords.longitude + (Math.random() - 0.5)/4
             };
             //alert("Latitude : " + pos.lat + " Longitude : " + pos.lng);
             // mettre à jour dans l'api

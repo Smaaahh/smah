@@ -31,12 +31,28 @@ namespace smaaahh_web
         public PaymentType? Payment { get; set; }
 
         public decimal Price { get; set; }
+        public decimal nbKm { get; set; }
 
         public int? PromotionCodeId { get; set; }
         public PromotionCode PromotionCode { get; set; }
         
         public Ride()
         { }
+
+        public Ride(RideRequest rideRequest, decimal prix)
+        {
+            RiderId = rideRequest.RiderId;
+            DriverId = rideRequest.DriverId;
+            PosXStart = rideRequest.PosXStart;
+            PosYStart = rideRequest.PosYStart;
+            PosXEnd = rideRequest.PosXEnd;
+            PosYEnd = rideRequest.PosYEnd;
+
+            PlaceNumber = rideRequest.PlaceNumber;
+            Price = rideRequest.nbKm * prix;
+            nbKm = rideRequest.nbKm;
+            DateCreation = DateTime.Now;
+        }
 
         public enum PaymentType
         {

@@ -121,11 +121,12 @@ namespace smaaahh_web.Controllers
             Session["ImgProfil"] = user.ImgProfil;
 
             // mettre le RideRequest en session
+            RideRequest rideRequest = null;
             Task.Run(async () =>
             {
-                Session["RideRequestId"] = await GetRideRequestByRider(user.UserId);
+                rideRequest = await GetRideRequestByRider(user.UserId);
             }).Wait();
-
+            Session["RideRequestId"] = (rideRequest == null) ? 0 : rideRequest.RideRequestID;
             // mettre à jour la position du driver
             // => sera fait lors de l'affichage du dashboard
             // et son etat

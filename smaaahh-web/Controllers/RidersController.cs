@@ -139,9 +139,10 @@ namespace smaaahh_web.Controllers
         {
             // on recupere la riderequest
             RideRequest rideRequest = null;
+            int reqId = int.Parse(Session["RideRequestId"].ToString());
             Task.Run(async () =>
             {
-                rideRequest = await GetRideRequest(int.Parse(Session["RideRequestId"].ToString()));
+                rideRequest = await GetRideRequest(reqId);
             }).Wait();
             Params parametres = null;
             Task.Run(async () =>
@@ -154,14 +155,19 @@ namespace smaaahh_web.Controllers
         }
 
         // sauvegarde de la Ride
+        [HttpPost]
         public ActionResult Payment([Bind()]Ride ride)
         {
 
             // sauvegarde de la ride
             Task.Run(async () =>
             {
-                 await CreateRide(ride);
+                 await CreateItem(ride,"ride");
             }).Wait();
+            // suppression de la riderequest
+            // A FAIRE
+            // Notifier le driver
+            // A FAIRE
             // redirection vers le dashboard
             return RedirectToAction("DashBoard", "Riders");
         }
