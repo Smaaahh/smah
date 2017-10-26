@@ -213,10 +213,22 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\1457652300.png" />
+    <Content Include="Content\images\6945c96dc969f372bb79a1f8909305ad--handsome-black-men-delicious-chocolate.jpg" />
+    <Content Include="Content\images\agence-creation-site-pour-tax_20170330-103711_1.jpg" />
+    <Content Include="Content\images\beauty-natural-make-up-model-backstage-920x518.jpg" />
+    <Content Include="Content\images\customer-service-icon-png-9.png" />
+    <Content Include="Content\images\faster-icon-png-0.png" />
     <Content Include="Content\images\greystar.png" />
+    <Content Include="Content\images\jerry-keys-cab-1_C.jpg" />
+    <Content Include="Content\images\lamborghini-gallardo-taxi-was-a-treat-for-le-mans-fans-109100_1.jpg" />
     <Content Include="Content\images\profils\default.jpg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\smaaahhlogo5.png" />
+    <Content Include="Content\images\smooth-tapered-fade.jpg" />
+    <Content Include="Content\images\t.jpg" />
+    <Content Include="Content\images\taxi-strike-paris.jpg" />
+    <Content Include="Content\images\taxi_driver.png" />
+    <Content Include="Content\images\yellow_taxis__new_york-600x400.jpg" />
     <Content Include="Content\jquery.timepicker.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -343,9 +355,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Maps.cshtml">
-      <BrowseToURL>~/Home/Maps</BrowseToURL>
-    </Content>
     <Content Include="Views\Drivers\Create.cshtml" />
     <Content Include="Views\Riders\Create.cshtml" />
     <Content Include="Views\Users\Login.cshtml" />
@@ -355,6 +364,7 @@
     <Content Include="Views\Drivers\Update.cshtml" />
     <Content Include="Views\Drivers\Viewtest.cshtml" />
     <Content Include="Views\Riders\Update.cshtml" />
+    <Content Include="Views\Users\Rating.cshtml" />
     <Content Include="Views\Riders\Payment.cshtml" />
   </ItemGroup>
   <ItemGroup>

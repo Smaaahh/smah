@@ -17,17 +17,17 @@
         <div id="WrapHeadNav">
             <div id="Head">
                 <div id="Logo">
-                    <img src="~/Content/images/smaaahhlogo5.png" />
+                    <img hre src="~/Content/images/smaaahhlogo5.png" />
                 </div>
                 <div id="Nav">
                     <ul>
                         <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
-                        <li>@Html.ActionLink("À propos de", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+                        <li>@Html.ActionLink("Recherche", "Index", "Recherche")</li>
                         @if (Session["UserId"] != null)
                         {
-                            <li>@Html.ActionLink($"Bienvenue {Session["UserName"]}", "Dashboard", Session["Type"].ToString()+"s")</li>
                             <li>@Html.ActionLink("Déconnexion", "Logout", "Users")</li>
+                            <li>@Html.ActionLink($"Bienvenue {Session["UserName"]}", "Dashboard", Session["Type"].ToString()+"s")</li>
                             <li><img src='@Session["ImgProfil"]' /></li>
                         }
                         else
@@ -46,6 +46,8 @@
         <div id="WrapFooter">
             <div id="Footer">
                 <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                @Html.ActionLink("Contact", "Contact", "Home")
+
             </div>
         </div>
     </div>

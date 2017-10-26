@@ -152,7 +152,33 @@ namespace smaaahh_web.Controllers
         }
 
 
-
-
+        public ActionResult Profil(int id,string type)
+        {
+            
+            Task.Run(async () =>
+            {
+                ViewBag.ListAvisTop = await CallApi<List<Rating>>($"api/TopRatingsByUser/{type}/{id}", false);
+                ViewBag.ListAvis = await CallApi<List<Rating>>($"api/RatingsByUser/{type}/{id}", false);
+            }).Wait();
+            User user = null;
+            ViewBag.Type = type;
+            if ( type == "driver")
+            {
+                Task.Run(async () =>
+                {
+                    user = await CallApi<Driver>($"api/Drivers/{id}", false);
+                }).Wait();
+            }
+            if (type == "rider")
+            {
+                Task.Run(async () =>
+                {
+                    user = await CallApi<Rider>($"api/Riders/{id}", false);
+                }).Wait();
+            }
+            ViewBag.User = user;
+            return View("Rating");
+        }
+        
     }
 }
