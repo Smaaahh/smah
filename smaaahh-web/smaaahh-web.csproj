@@ -366,6 +366,7 @@
     <Content Include="Views\Riders\Update.cshtml" />
     <Content Include="Views\Users\Rating.cshtml" />
     <Content Include="Views\Riders\Payment.cshtml" />
+    <Content Include="Views\Riders\Commandes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

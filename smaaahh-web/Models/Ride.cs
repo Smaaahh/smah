@@ -47,7 +47,7 @@ namespace smaaahh_web
             PosYStart = rideRequest.PosYStart;
             PosXEnd = rideRequest.PosXEnd;
             PosYEnd = rideRequest.PosYEnd;
-
+            Payment = null;
             PlaceNumber = rideRequest.PlaceNumber;
             Price = rideRequest.nbKm * prix;
             nbKm = rideRequest.nbKm;

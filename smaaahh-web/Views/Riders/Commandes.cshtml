@@ -1,0 +1,27 @@
+﻿@using smaaahh_web.Models
+@{
+    ViewBag.Title = "Commandes";
+}
+
+<h2>Commandes</h2>
+@if (ViewBag.ListeCommandes != null)
+{
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Conducteur</th>
+            <th>Prix</th>
+        </tr>
+    </thead>
+    
+    @foreach (Ride r in ViewBag.ListeCommandes)
+    {
+        <tr><td>@r.DateCreation</td><td>@r.Driver.UserName</td><td>@r.Price</td></tr>
+    }
+    
+</table>
+}
+else {
+<p>Il n'y a pas de commandes pour le moment</p>
+}

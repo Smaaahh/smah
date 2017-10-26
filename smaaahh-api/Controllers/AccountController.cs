@@ -66,7 +66,12 @@ namespace smaaahh_api.Controllers
             //var jsonSerialiser = new JavaScriptSerializer();
             return Json(user);
         }
-
+        [TokenAuthenticate]
+        [Route("api/Account/commandes")]
+        public IHttpActionResult GetCommandeByUser(int id)
+        {
+            return Json(db.Rides.Where(t => t.RiderId == id && t.Payment != null).ToList());
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

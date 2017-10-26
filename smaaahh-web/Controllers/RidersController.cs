@@ -82,10 +82,18 @@ namespace smaaahh_web.Controllers
         {
             // on doit recuperer les infos du rider pour les passer à la vue
             Rider rider = null;
-            Task.Run(async () =>
+            
+            if (Session["UserEmail"] == null){
+                return RedirectToAction("Login", "Users");
+            }
+            else
             {
-                rider = await GetRider(Session["UserEmail"].ToString());
-            }).Wait();
+                Task.Run(async () =>
+                {
+                    rider = await GetRider(Session["UserEmail"].ToString());
+                }).Wait();
+            }
+           
             return View(rider);
         }
 
@@ -132,6 +140,24 @@ namespace smaaahh_web.Controllers
 
         public ActionResult Dashboard()
         {
+            return View();
+        }
+
+
+        public ActionResult Commandes()
+        {
+            List<Ride> rides = new List<Ride>();
+            Task.Run(async () =>
+            {
+                rides = await CallApi<List<Ride>>($"api/Account/commandes/?id={Session["UserId"].ToString()}",true);
+            }).Wait();
+
+            if (rides.Count() == 0)
+            {
+                rides = null;
+            }
+            ViewBag.ListeCommandes = rides;
+
             return View();
         }
 

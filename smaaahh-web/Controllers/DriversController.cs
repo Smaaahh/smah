@@ -58,7 +58,7 @@ namespace smaaahh_web.Controllers
                             }).Wait();
                         }
                         ViewBag.Message = "Ficher envoyé";
-                        //pas ça
+
                         // on enregistre la voiture
                         Car car = new Car(Modele_voiture, Nbplace_voiture, Immatriculation, driver.UserId);
                         Task.Run(async () =>

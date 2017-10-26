@@ -109,7 +109,9 @@ namespace smaaahh_web.Controllers
         #region Rider
         public async Task<Rider> GetRider(string email)
         {
+           
             return await CallApi<Rider>($"api/Account/?email={email}&type=rider", true);
+            
         }
         public async Task<bool> UpdateRider(Rider rider)
         {

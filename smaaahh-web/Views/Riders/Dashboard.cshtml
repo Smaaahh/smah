@@ -6,23 +6,16 @@
 <h2>Dashboard Rider</h2>
 <div class="info">@ViewBag.ErrorMessage</div>
 <div id="WrapDash">
-    <div class="DashBox">
-
+    <div class="DashBox" onclick="location.href='/@Session["Type"].ToString()s/update'">
+        <p>Mise à jour</p>
     </div>
-    <div class="DashBox">
 
+    <div class="DashBox" onclick="location.href='/users/profil?id=@Session["UserId"].ToString()&type=@Session["Type"].ToString()'">
+        <p>Mes évaluations</p>
     </div>
-    <div class="DashBox">
-
+    <div class="DashBox" onclick="location.href='/riders/commandes'">
+        <p>Mes Commandes</p>
     </div>
-    <div class="DashBox">
-
-    </div>
-    <div class="DashBox">
-
-    </div>
-    <div class="DashBox">
-
-    </div>
+   
 </div>
 

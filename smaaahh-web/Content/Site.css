@@ -251,8 +251,14 @@ body {
     border-width: 1px;
     border-radius: 10px;
     box-shadow: 2px 2px 2px #808080;
+    cursor:pointer;
 }
-
+    .DashBox p {
+        line-height: 250px;
+        text-align: center;
+        font-weight: bold;
+        color: #743E9F;
+    }
     .DashBox:hover {
         box-shadow: none;
     }
