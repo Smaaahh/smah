@@ -178,6 +178,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AjaxController.cs" />
+    <Compile Include="Controllers\AvisController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\DriversController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -382,6 +383,7 @@
     <Content Include="Views\Users\Rating.cshtml" />
     <Content Include="Views\Riders\Payment.cshtml" />
     <Content Include="Views\Riders\Commandes.cshtml" />
+    <Content Include="Views\Avis\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -17,7 +17,7 @@
     
     @foreach (Ride r in ViewBag.ListeCommandes)
     {
-        <tr><td>@r.DateCreation</td><td>@r.Driver.UserName</td><td>@r.Price</td></tr>
+        <tr onclick="location.href=''"><td>@r.DateCreation</td><td>@r.Driver.UserName</td><td>@r.Price</td></tr>
     }
     
 </table>

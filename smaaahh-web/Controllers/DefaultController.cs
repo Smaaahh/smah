@@ -55,6 +55,9 @@ namespace smaaahh_web.Controllers
                 case "ride":
                     url = $"api/Rides";
                     break;
+                case "rating":
+                    url = $"api/Ratings";
+                    break;
             }
             return await CreateAPIItemAsync<T>(url, item);
         }
