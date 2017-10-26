@@ -91,12 +91,7 @@ namespace smaaahh_web.Controllers
         {
             return View();
         }
-
-        public ActionResult Rating()
-        {
-            return View();
-        }
-
+        
         public ActionResult Update()
         {
             

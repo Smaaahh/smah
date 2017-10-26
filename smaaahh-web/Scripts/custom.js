@@ -292,7 +292,9 @@ $(document).ready(function () {
     $(".validate-route").on("click", function () {
         calcRoute();
     });
-
+    $("body").on("click", "#driver-name", function () {
+        window.location.replace("/users/profil?id=" + $("#driver-id").val() + "&type=driver");
+    });
     $("body").on("click","#choose-driver", function () {
         $(".validate-choice").show();
         $("#driver-id-choosen").val($("#driver-id").val());

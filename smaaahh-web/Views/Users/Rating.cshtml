@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "Rating";
+}
+
+<h2>Profil</h2>
+<hr />
+
+<div id="WrapRating">
+    <div id="MainRating">
+        <div id="MainStar">
+            <div id="WrapNumNameRat">
+                <div class="NumNameRat">
+                    @ViewBag.User.Rating
+                </div>
+                <div class="NumNameRat Name">
+                    @ViewBag.User.UserName
+                </div>
+            </div>
+        </div>
+        <div id="Stars">
+            @foreach (Rating r in ViewBag.ListAvis)
+            {
+                <div class="Rating Rtop">
+                    <div class="ImgRating">
+                        @if (ViewBag.Type == "rider")
+                        {
+                            <img src="@r.Driver.ImgProfil" />
+                        }
+                        else
+                        {
+                            <img src="@r.Rider.ImgProfil" />
+                        }
+                    </div>
+                    <div class="StarImg">
+                        @for (int i = 0; i < r.Note; i++)
+                        {
+                            <img src="~/Content/images/1457652300.png" />
+                        }
+                        @for (int i = r.Note; i < 5; i++)
+                        {
+                        <img src="~/Content/images/greystar.png" />
+                        }
+                    </div>
+                    <div class="TextRating Ttop">
+                        @if (ViewBag.Type == "rider")
+                        {
+                            <h4>@r.Driver.UserName</h4>
+
+                        }
+                        else
+                        {
+                            <h4>@r.Rider.UserName</h4>
+                        }
+                        @r.Message
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div id="WRating">
+        @foreach (Rating r in ViewBag.ListAvis)
+        {
+        <div class="Rating">
+            <div class="ImgRating">
+                @if (ViewBag.Type == "rider")
+                {
+                    <img src="@r.Driver.ImgProfil" />
+                }
+                else
+                {
+                    <img src="@r.Rider.ImgProfil" />
+                }
+            </div>
+            <div class="StarImg">
+                @for (int i = 0; i < r.Note; i++)
+                {
+                    <img src="~/Content/images/1457652300.png" />
+                }
+                @for (int i = r.Note; i < 5; i++)
+                {
+                    <img src="~/Content/images/greystar.png" />
+                }
+            </div>
+            <div class="TextRating">
+                @if (ViewBag.Type == "rider")
+                {
+                    <h4>@r.Driver.UserName</h4>
+                }
+                else
+                {
+                    <h4>@r.Rider.UserName</h4>
+                }
+                @r.Message
+            </div>
+        </div>
+        }
+    </div>
+</div>

@@ -24,6 +24,8 @@ namespace smaaahh_wpf.Modeles
 
         public virtual Driver Driver { get; set; }
 
+        public bool isTop { get; set; }
+
         public Rating()
         {
 
